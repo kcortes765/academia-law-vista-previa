@@ -1,7 +1,7 @@
 /* Protected agenda. Drafts and reviewed impacts stay in memory; commands recover on the server. */
 window.academiaAgenda=function(U,tools){
- // Mejora «jose-agenda» (visual/mejoras.js): días de la agenda en filas. Sin ella se usa la versión actual.
- const mejora=()=>typeof academiaMejora==='function'&&academiaMejora('jose-agenda');
+ // Mejora «admin-agenda» (visual/mejoras.js): días de la agenda en filas. Sin ella se usa la versión actual.
+ const mejora=()=>typeof academiaMejora==='function'&&academiaMejora('admin-agenda');
  const e=escapeHTML,b=tools.button,zone='America/Santiago',weekdays=[[1,'Lunes'],[2,'Martes'],[3,'Miércoles'],[4,'Jueves'],[5,'Viernes'],[6,'Sábado'],[0,'Domingo']];
  const civil=t=>new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit'}).format(t),hour=t=>new Intl.DateTimeFormat('es-CL',{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(t);
  const dateLabel=d=>new Intl.DateTimeFormat('es-CL',{timeZone:'UTC',dateStyle:'full'}).format(new Date(d+'T12:00:00Z'));

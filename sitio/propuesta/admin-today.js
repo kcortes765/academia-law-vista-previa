@@ -1,7 +1,7 @@
 /* Read-only daily cockpit. Every action enters its existing protected circuit. */
 window.academiaToday=function(U,{safe}){
- // Mejora «jose-hoy» (visual/mejoras.js): tablero Hoy. Sin ella se usa la versión actual (…Actual).
- const mejora=()=>typeof academiaMejora==='function'&&academiaMejora('jose-hoy');
+ // Mejora «admin-hoy» (visual/mejoras.js): tablero Hoy. Sin ella se usa la versión actual (…Actual).
+ const mejora=()=>typeof academiaMejora==='function'&&academiaMejora('admin-hoy');
  const e=escapeHTML,labels=mejora()?{held:'Pendiente de confirmación',confirmed:'Confirmada',review:'Transferencia informada',incident:'Incidencia',pending:'Pendiente de transferencia',cancelled:'Cancelada',completed:'Completada',absent:'Inasistencia'}:{held:'Retenida, sin confirmar',confirmed:'Confirmada',review:'En revisión de abono',incident:'Incidencia',pending:'Pendiente de transferencia',cancelled:'Cancelada',completed:'Completada',absent:'Inasistencia'};
  const longDate=d=>{const t=new Date(String(d)+'T12:00:00Z');return isNaN(t)?String(d):new Intl.DateTimeFormat('es-CL',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'}).format(t);};
  let data=null,owner=null,generation=0,failed=false;

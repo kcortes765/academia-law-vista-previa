@@ -1,12 +1,12 @@
 /* Mejoras propuestas, activables por módulo. Se carga en <head>, después de las hojas de estilo y antes de cualquier otro script.
    Para volver a la versión actual de una parte del sitio, borra su id de la lista y guarda el archivo.
    Con la lista vacía ([]) el sitio se ve y funciona exactamente como hoy. Qué cambia cada módulo: plataforma/MEJORAS.md.
-   Módulos: 'inicio', 'acabado', 'reserva', 'cuenta', 'operacion', 'jose-hoy', 'jose-agenda'. */
-const MEJORAS_ACTIVAS=['inicio','acabado','reserva','cuenta','operacion','jose-hoy','jose-agenda'];
+   Módulos: 'inicio', 'acabado', 'reserva', 'cuenta', 'operacion', 'admin-hoy', 'admin-agenda'. */
+const MEJORAS_ACTIVAS=['inicio','acabado','reserva','cuenta','operacion','admin-hoy','admin-agenda'];
 
 /* Desde aquí no hace falta editar. window.ACADEMIA_MEJORAS_VISTA (una lista) sólo la usan revisiones locales; producción no la define. */
 function academiaMejora(id){return academiaMejora.activas.includes(id);}
-academiaMejora.modulos=Object.freeze(['inicio','acabado','reserva','cuenta','operacion','jose-hoy','jose-agenda']);
+academiaMejora.modulos=Object.freeze(['inicio','acabado','reserva','cuenta','operacion','admin-hoy','admin-agenda']);
 academiaMejora.activas=(()=>{const vista=typeof window==='object'&&window?window.ACADEMIA_MEJORAS_VISTA:undefined,lista=Array.isArray(vista)?vista:MEJORAS_ACTIVAS;return Object.freeze(academiaMejora.modulos.filter(id=>lista.includes(id)));})();
 if(typeof window==='object'&&window)window.academiaMejora=academiaMejora;
 if(typeof document==='object'&&document&&document.documentElement){
