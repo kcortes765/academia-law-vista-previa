@@ -1,0 +1,34 @@
+/* Folio 118 · mejora «operacion»: pasos del pago, total y datos de transferencia en dos columnas. */
+.variant-c .payment-steps{margin:1.5rem 0}
+.variant-c[data-view=operation] .operation-total strong{font-family:Source Serif,Georgia,serif;font-variant-numeric:lining-nums tabular-nums}
+.variant-c[data-view=operation] .operation-total strong{font-size:1.6rem;font-weight:500}
+
+/* Operación: datos de transferencia como registro de dos columnas (dt/dd directos: «Copiar datos» los lee). */
+.variant-c[data-view=operation] .operation-content dl{display:grid;grid-template-columns:minmax(8rem,max-content) minmax(0,1fr);margin:1rem 0 1.5rem;border-top:1px solid var(--line)}
+.variant-c[data-view=operation] .operation-content :is(dt,dd){margin:0;padding:.5rem 0;border-bottom:1px solid var(--line)}
+.variant-c[data-view=operation] .operation-content dt{padding-right:1.5rem;color:var(--muted);font-variant-caps:all-small-caps;letter-spacing:.04em}
+.variant-c[data-view=operation] .operation-content dd{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+
+@media(max-width:639px){
+ .variant-c[data-view=operation] .operation-content dl{grid-template-columns:minmax(0,1fr)}
+ .variant-c[data-view=operation] .operation-content dt{padding-bottom:0;border-bottom:0}
+}
+
+/* Si la reserva queda con su versión actual, los pasos del pago conservan el estilo de folio (mismas reglas que refinamiento-118.css). */
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps{list-style:none;margin:0 0 2.5rem;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;line-height:1.3}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li{display:flex;align-items:baseline;gap:.5rem;min-width:0;padding:0 0 .5rem;border-bottom:2px solid var(--line);color:var(--muted);font-variant-caps:all-small-caps;letter-spacing:.04em;font-size:1.05rem;font-weight:500;transition:color .12s,border-color .12s}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps .step-index{flex:none;font-family:Source Serif,Georgia,serif;font-variant-caps:normal;font-variant-numeric:lining-nums tabular-nums;font-size:1.25rem;line-height:1;color:var(--accent)}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps .step-label{min-width:0;overflow-wrap:anywhere}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li.is-done{border-bottom-color:var(--ink);color:var(--ink)}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li.is-done .step-index{color:var(--ink)}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li.is-current{border-bottom:3px solid var(--accent);color:var(--ink);font-weight:600}
+:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps{margin:1.5rem 0}
+@media(max-width:959px){
+ :root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps{gap:.5rem;margin-bottom:1.5rem}
+ :root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li{flex-direction:column;gap:.15rem;font-size:.95rem}
+}
+@media(prefers-reduced-motion:reduce){:root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li{transition:none}}
+@media(forced-colors:active){
+ :root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li{border-bottom:2px solid CanvasText}
+ :root:not([data-mejoras~=reserva]) .variant-c .payment-steps.folio-steps li.is-current{border-bottom:4px solid Highlight}
+}

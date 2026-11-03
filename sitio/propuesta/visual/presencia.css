@@ -1,0 +1,32 @@
+/* 0.6: recorridos amplios para presentación, acentos locales para trabajar. */
+body.variant-c{--presence:1;--presence-duration:500ms}
+body.variant-c[data-presence=intensa]{--presence:1.5;--presence-duration:650ms}
+.variant-c .voice-atmosphere{animation-duration:14s}
+@keyframes ambient-drift{from{transform:translate3d(-22px,-12px,0) rotate(-2deg);opacity:.65}to{transform:translate3d(30px,16px,0) rotate(2deg);opacity:1}}
+.variant-c .voice-field{opacity:.42;transition:transform 430ms var(--settle)}
+.variant-c .hero-copy h1{transition:transform 430ms var(--settle)}
+.variant-c .hero-copy h1 em{position:relative}
+.variant-c .hero-copy h1 em:after{content:'';position:absolute;left:0;right:0;bottom:-.08em;height:2px;background:var(--c-ecc6ae, #ECC6AE);transform:scaleX(var(--title-rule,.18));transform-origin:left;transition:transform 600ms var(--settle);pointer-events:none}
+.variant-c .reactive-plane{position:relative;isolation:isolate}
+.variant-c .reactive-plane:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 420px 260px at var(--spot-x,50%) var(--spot-y,50%),var(--c-9c503224, #9C503224),transparent 75%);opacity:0;transition:opacity 240ms}
+.variant-c .reactive-plane:after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform var(--presence-duration) var(--settle);pointer-events:none}
+.variant-c .reactive-plane:is(.pointer-active,:focus-within):before{opacity:1}
+.variant-c .reactive-plane:is(.pointer-active,:focus-within):after{transform:scaleX(1)}
+.variant-c .service-line h3{transition:transform 500ms var(--settle)}
+@media(hover:hover) and (pointer:fine){.variant-c .service-line:hover h3{transform:translateX(16px)}.variant-c .service-line:hover .icon-button{transform:translate(8px,-8px)}}
+.variant-c .service-line:has(:focus-visible) h3{transform:translateX(16px)}
+.variant-c .service-line:has(:focus-visible) .icon-button{transform:translate(8px,-8px)}
+.variant-c .slot,.variant-c .day,.variant-c .panel-nav [data-tab]{position:relative;overflow:clip;isolation:isolate;transition:box-shadow 200ms,border-color 200ms,background 200ms}
+.variant-c :is(.slot,.day,.panel-nav [data-tab]):after{content:'';position:absolute;inset:auto 0 0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 320ms var(--settle);pointer-events:none}
+.variant-c :is(.slot,.day,.panel-nav [data-tab]):is(:hover,:focus-visible):not(:disabled):after{transform:scaleX(1)}
+.variant-c .slot:is(:hover,:focus-visible):not(:disabled){box-shadow:inset 0 0 0 2px var(--accent)}
+.variant-c .interaction-flare{position:absolute;inset:0;pointer-events:none;border:3px solid var(--accent);z-index:4;transform-origin:center}
+.variant-c .page-head{position:relative;isolation:isolate;overflow:clip}
+.variant-c .task-orbit{position:absolute;width:300px;height:300px;border:1px solid var(--c-9c503277, #9C503277);border-radius:50%;right:-90px;top:-100px;z-index:-1;pointer-events:none;transform:translate(var(--task-x,0px),var(--task-y,0px));transition:transform 500ms var(--settle)}
+.variant-c .task-orbit:after{content:'';position:absolute;inset:30px;border:1px solid var(--c-172f6333, #172F6333);border-radius:50%}
+.variant-c .button:not(:disabled):is(:hover,:focus-visible){box-shadow:5px 5px 0 var(--c-9c503244, #9C503244);transition:box-shadow 240ms,background 240ms}
+.variant-c .panel-nav [data-tab][aria-current=page]:after{transform:scaleX(1)}
+@media(max-width:639px){.variant-c .task-orbit{width:210px;height:210px;right:-110px;top:-85px}.variant-c .service-line:has(:focus-visible) h3{transform:translateX(8px)}}
+.reduce-motion .voice-atmosphere{animation:none!important}.reduce-motion .task-orbit{transform:none!important}.reduce-motion .hero-copy h1 em:after{transform:scaleX(1)}.reduce-motion .reactive-plane:after,.reduce-motion .reactive-plane:before{transition:none}.reduce-motion .service-line h3,.reduce-motion .service-line .icon-button{transform:none!important}
+@media(prefers-reduced-motion:reduce){.variant-c .voice-atmosphere{animation:none!important}.variant-c .task-orbit{transform:none!important}.variant-c .hero-copy h1 em:after{transform:scaleX(1)}.variant-c .reactive-plane:after,.variant-c .reactive-plane:before{transition:none}.variant-c .service-line h3,.variant-c .service-line .icon-button{transform:none!important}}
+body.type-sample .hero-copy h1 em:after{display:none}

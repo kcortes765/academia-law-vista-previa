@@ -1,0 +1,9 @@
+/* Paquete 2 · Textos del alumno: zona horaria, resumen de reserva y tarjetas sin jerga. */
+.variant-c .calendar-zone{margin:12px 0 4px;font-size:15px}
+.variant-c .calendar-zone strong{color:#172F63}
+.variant-c .calendar-zone-note{margin:0 0 12px;font-size:14px;color:#A6532E}
+.variant-c .booking-summary .summary-empty{font-family:'Source Serif 4','Source Serif Pro',Georgia,serif;font-style:italic;font-size:18px;line-height:1.45;color:#ECC6AE;margin:8px 0 20px}
+.variant-c .booking-summary .summary-rules{list-style:none;margin:0 0 20px;padding:16px 0 0;border-top:1px solid rgba(236,198,174,.35);display:grid;gap:8px;font-size:14px;line-height:1.5;color:#F9F4ED}
+.variant-c .booking-summary .summary-rules li{position:relative;padding-left:18px}
+.variant-c .booking-summary .summary-rules li::before{content:'';position:absolute;left:0;top:.72em;width:8px;height:1px;background:#ECC6AE}
+.variant-c .booking-summary .summary-hint{margin:10px 0 0;font-size:14px;color:#ECC6AE}

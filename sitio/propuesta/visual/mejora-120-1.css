@@ -1,0 +1,52 @@
+/* Paquete 1 · Inicio: confianza en la portada, precios antes y reserva a mano en móvil. */
+.variant-c .hero-credentials{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px;font-size:14px;line-height:1.45;color:var(--blue);position:relative;z-index:2}
+.variant-c .hero-credentials li{position:relative;padding-left:22px}
+.variant-c .hero-credentials li::before{content:'';position:absolute;left:0;top:.72em;width:12px;height:1px;background:var(--blue)}
+.variant-c .editorial-hero .hero-footnote{font-size:13px;letter-spacing:.04em}
+
+.variant-c .about-jose .about-linkedin{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--blue);color:var(--blue)}
+.variant-c .about-jose .about-linkedin svg{width:18px;height:18px}
+.variant-c .about-jose .about-linkedin:hover,.variant-c .about-jose .about-linkedin:focus-visible{background:var(--blue);color:var(--night)}
+.variant-c .about-jose .about-linkedin:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+
+.variant-c .booking-steps-band{background:var(--paper);padding:36px max(32px,calc((100vw - 1216px)/2)) 40px}
+.variant-c .booking-steps-band>.eyebrow{margin:0 0 20px}
+.variant-c .booking-steps-band .practice-strip{padding:0;background:transparent;border:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.variant-c .booking-steps-band .practice-strip>span[role=listitem]{padding:0 32px;border-left:1px solid var(--line);font-size:15px;line-height:1.55;color:var(--text);display:block}
+.variant-c .booking-steps-band .practice-strip>.journey-trace+span[role=listitem]{border-left:0;padding-left:0}
+.variant-c .booking-steps-band .practice-strip b{display:block;font-family:Source Serif,Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.variant-c .booking-steps-band .practice-strip b::first-letter{font-size:34px;line-height:1;color:var(--accent);margin-right:2px}
+
+.variant-c .first-session .folio{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+
+.variant-c .method-cta{margin-top:28px}
+.variant-c .home-cta-bar{display:none}
+
+@media(max-width:959px){
+.variant-c .first-session.service-guide{padding:22px 20px}
+.variant-c .first-session.service-guide .first-session-body{padding-top:0}
+.variant-c .first-session.service-guide h2{font-size:28px;line-height:1.15;margin:6px 0 12px}
+.variant-c .service-guide .guide-list{margin:0}
+.variant-c .service-guide .guide-list li{display:grid;grid-template-columns:116px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:8px 0}
+.variant-c .service-guide .guide-list b{font-size:17px;font-weight:500}
+.variant-c .service-guide .guide-list span{font-size:14px;line-height:1.4}
+.variant-c .service-guide .guide-note{font-size:13px;margin:10px 0 2px}
+.variant-c .service-guide .guide-links{display:flex;flex-wrap:wrap;gap:0 20px;align-items:center;margin-top:0}
+.variant-c .service-guide .guide-links a,.variant-c .service-guide .guide-links a+a{display:inline-flex;gap:6px;align-items:center;width:auto;min-height:44px;padding:0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;font-size:14px}
+.variant-c .method-cta{min-height:44px}
+
+.variant-c[data-view=home] .home-cta-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:var(--night);border-top:1px solid color-mix(in srgb,var(--blue) 45%,transparent);visibility:hidden;opacity:0;transition:opacity .15s ease-out,visibility 0s linear .15s}
+.variant-c[data-view=home] .home-cta-bar.is-visible{visibility:visible;opacity:1;transition:opacity .15s ease-out}
+.variant-c[data-view=home] .home-cta-bar p{margin:0;font-size:13px;color:var(--blue)}
+.variant-c[data-view=home] .home-cta-bar .button{min-height:44px;padding:0 18px;background:var(--blue);color:var(--night);border-color:var(--blue);flex:none}
+.variant-c:has(#site-navigation.open) .home-cta-bar{display:none!important}
+}
+@media(max-width:639px){
+.variant-c .booking-steps-band{padding:32px 22px}
+.variant-c .booking-steps-band .practice-strip{grid-template-columns:1fr}
+.variant-c .booking-steps-band .practice-strip>span[role=listitem]{border-left:0;border-top:1px solid var(--line);padding:16px 0}
+.variant-c .booking-steps-band .practice-strip>.journey-trace+span[role=listitem]{border-top:0}
+}
+@media(prefers-reduced-motion:reduce){.variant-c .home-cta-bar{transition:none!important}}
+.variant-c.reduce-motion .home-cta-bar{transition:none!important}
+.variant-c[data-view=home] .home-cta-bar .button:focus-visible{outline-color:var(--blue)}

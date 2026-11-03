@@ -1,0 +1,7 @@
+/* Paquete 5 · parte de Hoy de José (mejora «jose-hoy»). */
+.variant-c .today-meta{font-size:15px;color:#172F63;margin:4px 0 8px}
+.variant-c .today-note{font-size:14px;color:#5B6478;max-width:70ch;margin:0 0 8px}
+.variant-c .today-content>h3{margin:28px 0 8px}
+.variant-c .today-allclear,.variant-c .today-empty{padding:12px 16px;border-left:3px solid #2F6B4F;background:#F7F4EE;font-size:15px;margin:8px 0 16px}
+.variant-c .today-count{font-size:14px;color:#5B6478;margin:4px 0 12px}
+.variant-c .today-empty-section h2{font-size:20px}

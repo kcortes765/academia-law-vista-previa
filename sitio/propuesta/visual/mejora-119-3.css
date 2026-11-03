@@ -1,0 +1,30 @@
+/* Paquete 3 · Reserva: acabado del bloque de horarios y semana compacta en móvil */
+
+/* B. Margen interior de «Elige día y hora» en PC, igual que el resumen */
+@media(min-width:960px){.variant-c .booking-grid>section.booking-stage{padding:28px 32px 32px}}
+
+/* C. Día sin horarios: atenuado y sin tachar */
+.variant-c .api-days .day:disabled,.variant-c .api-days .day:disabled *{text-decoration:none!important}
+.variant-c .api-days .day:disabled{opacity:.5;background:transparent;cursor:default}
+
+/* D. «Actualizar disponibilidad» como enlace discreto con área táctil de 44 px */
+.variant-c .booking-stage [data-refresh-slots]{background:none;border:0;padding:0;min-height:44px;text-align:left;justify-content:flex-start;font-size:14px;font-weight:500;color:#172F63;text-decoration:underline;text-underline-offset:4px;text-decoration-color:#8391A8}
+.variant-c .booking-stage [data-refresh-slots]:hover{text-decoration-color:#A6532E}
+
+/* E. Horarios: transiciones discretas de color y borde */
+.variant-c .api-slots .button{transition:background-color .15s ease-out,color .15s ease-out,border-color .15s ease-out}
+@media(prefers-reduced-motion:reduce){.variant-c .api-slots .button{transition:none}}
+
+/* F. «Continuar» desactivado legible, en el resumen de PC y en la barra móvil */
+.variant-c .booking-summary .button:disabled{background:transparent!important;color:#F9F4ED!important;border:1px dashed rgba(249,244,237,.55)!important;opacity:1!important;cursor:not-allowed}
+.variant-c .booking-mobile-actions .button:disabled{background:#E6E0D4!important;color:#3A4560!important;border-color:#C9C1B2!important;opacity:1!important;cursor:not-allowed}
+
+/* G. Semana compacta en móvil: 7 días en una fila */
+@media(max-width:600px){
+.variant-c .api-days:not(.month-days){display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.variant-c .api-days:not(.month-days) .day{min-height:64px;padding:8px 2px 10px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;text-align:center;position:relative}
+.variant-c .api-days:not(.month-days) .day .day-week{font-size:10px;letter-spacing:.06em}
+.variant-c .api-days:not(.month-days) .day .day-number{font-size:20px;line-height:1.1}
+.variant-c .api-days:not(.month-days) .day .day-month,.variant-c .api-days:not(.month-days) .day small{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.variant-c .api-days:not(.month-days) .day:not(:disabled)::after{content:'';position:static;transform:none;transition:none;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.55;margin-top:4px}
+}

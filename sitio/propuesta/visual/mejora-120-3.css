@@ -1,0 +1,63 @@
+/* Paquete 3 · Tarjetas de sesión y «Tu cuenta»: una acción principal por tarjeta, el resto como enlaces de texto. */
+
+/* Base compartida por panel y operación. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:22px 0;border-bottom:1px solid var(--line);max-width:none}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>*{flex:0 0 100%;margin:0}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>h3{order:0}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.session-meta{order:1}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>p,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>section{order:2}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions{display:contents}
+
+/* Acción principal: la única con relleno. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary){order:4;flex:0 0 auto;background:var(--ink)!important;color:var(--p-onDark)!important;border:1px solid var(--ink)!important;min-height:44px;padding:0 20px;font-size:15px;font-weight:600;margin:4px 8px 0 0;justify-content:center;transition:background-color .15s}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary):hover{background:var(--night)!important}
+
+/* Acciones secundarias: enlaces de texto. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{flex:0 0 auto;width:auto;background:none!important;border:0!important;box-shadow:none!important;padding:0 2px;min-height:44px;margin:4px 0 0;justify-content:flex-start;font-size:15px;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;text-underline-offset:5px;transition:text-decoration-color .15s,color .15s}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics]{order:5}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation]{order:6}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move]{order:7}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{order:8;color:var(--accent)}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]:hover{text-decoration-color:var(--accent)}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button:disabled{color:var(--muted);text-decoration:none;opacity:1;cursor:default}
+
+@media(max-width:600px){
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail{align-items:center;gap:8px 20px}
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary){flex:1 1 100%;margin-right:0;min-height:48px;justify-content:center}
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{flex:0 0 auto;min-height:44px;justify-content:flex-start}
+}
+
+/* Tu cuenta: acciones secundarias como enlaces. */
+.variant-c .panel-layout.api-account>aside>[data-refresh-account],
+.variant-c .panel-layout.api-account>aside>[data-logout]{width:auto;justify-self:start;align-self:start;text-align:left;justify-content:flex-start;background:none!important;border:0!important;box-shadow:none!important;padding:0 2px;min-height:44px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;text-underline-offset:5px;transition:text-decoration-color .15s}
+.variant-c .panel-layout.api-account>aside>[data-refresh-account]:hover,
+.variant-c .panel-layout.api-account>aside>[data-logout]:hover{text-decoration-color:var(--accent)}
+
+@media(max-width:959px){
+ .variant-c .panel-layout.api-account>aside{order:1}
+}
+@media(min-width:761px) and (max-width:959px){
+ .variant-c .panel-layout.api-account>aside{margin:0;grid-template-columns:minmax(0,1fr)}
+ .variant-c .panel-layout.api-account>aside>.button:not([data-refresh-account]):not([data-logout]){width:100%}
+}
+@media(max-width:760px){
+ .variant-c .panel-layout.api-account>aside{margin:40px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+ .variant-c .panel-layout.api-account>aside>h2,
+ .variant-c .panel-layout.api-account>aside>p{grid-column:1/-1;margin:0}
+ .variant-c .panel-layout.api-account>aside>.button:not([data-refresh-account]):not([data-logout]){width:100%;min-height:44px;margin:0;justify-content:center}
+ .variant-c .panel-layout.api-account>aside>[data-refresh-account],
+ .variant-c .panel-layout.api-account>aside>[data-logout]{margin:0;justify-content:flex-start}
+}

@@ -1,0 +1,198 @@
+{
+ "home": [
+  {
+   "id": "h1",
+   "titulo": "Portada con credenciales",
+   "detalle": "Bajo la firma de José aparecen nota 6,5, ranking N.º 1 y mentor UCN. La tarjeta lateral pasa a ser una guía para elegir sesión (más compacta en móvil). Los trazos decorativos ya no cruzan los botones.",
+   "propuesta": ".editorial-hero",
+   "original": ".editorial-hero",
+   "modulo": "inicio"
+  },
+  {
+   "id": "h2",
+   "titulo": "Cómo reservar en 3 pasos",
+   "detalle": "Antes: tres ventajas genéricas en letra chica. Ahora: banda con título y pasos numerados (horarios → código por correo → reserva y transferencia).",
+   "propuesta": ".booking-steps-band",
+   "original": ".practice-strip",
+   "modulo": "inicio"
+  },
+  {
+   "id": "h3",
+   "titulo": "Sesiones y precios, antes",
+   "detalle": "Los precios suben de ~2.700 a ~1.200 px en PC (de ~4.150 a ~1.850 en móvil). Cada servicio tiene botón «Ver horarios», Diagnóstico se marca «Para empezar» y hay un cierre con llamada a reservar.",
+   "propuesta": "#servicios",
+   "original": "#servicios",
+   "modulo": "inicio"
+  },
+  {
+   "id": "h4",
+   "titulo": "José, después de los precios",
+   "detalle": "Rol visible bajo su nombre y LinkedIn en la paleta del sitio. Sus credenciales clave ya se ven en la portada.",
+   "propuesta": "#sobre-mi",
+   "original": "#sobre-mi",
+   "modulo": "inicio"
+  },
+  {
+   "id": "h5",
+   "titulo": "«Qué pasa en una sesión»",
+   "detalle": "El método, que repetía los pasos de reserva, pasa a explicar antes, durante y después de una sesión, con textos ya presentes en el sitio.",
+   "propuesta": ".editorial-method",
+   "original": ".editorial-method",
+   "modulo": "inicio"
+  },
+  {
+   "id": "h6",
+   "titulo": "Pie de página ordenado",
+   "detalle": "Marca y ubicación, contacto, legales en una fila y administración/accesibilidad agrupadas. En móvil, además, aparece una barra discreta «Ver horarios» cuando no hay otra llamada a la vista.",
+   "propuesta": ".site-footer",
+   "original": ".site-footer",
+   "modulo": "acabado"
+  }
+ ],
+ "calendar": [
+  {
+   "id": "k1",
+   "titulo": "Cabecera sin numeración técnica",
+   "detalle": "«03 / Academia Law» pasa a «Reserva» y la cabecera se alinea con el contenido.",
+   "propuesta": ".page-head",
+   "original": ".page-head",
+   "modulo": "acabado"
+  },
+  {
+   "id": "k2",
+   "titulo": "Progreso de la reserva",
+   "detalle": "Pasos numerados con el paso actual destacado.",
+   "propuesta": ".booking-progress",
+   "original": ".booking-progress",
+   "modulo": "reserva"
+  },
+  {
+   "id": "k3",
+   "titulo": "Interruptor del resumen",
+   "detalle": "Textos para personas: «Ampliar tu selección» y «N horarios» en vez de «Dar espacio al resumen» y «fechas».",
+   "propuesta": ".summary-controls",
+   "original": ".summary-controls",
+   "modulo": "reserva"
+  },
+  {
+   "id": "k4",
+   "titulo": "Elige día y hora",
+   "detalle": "Hora de Chile explícita bajo la navegación, días con su fecha separada y legible, días sin horarios atenuados en vez de tachados, «Actualizar disponibilidad» discreto y semana compacta en móvil.",
+   "propuesta": ".booking-stage",
+   "original": ".booking-stage",
+   "modulo": "reserva"
+  },
+  {
+   "id": "k5",
+   "titulo": "Resumen de la reserva",
+   "detalle": "Estado vacío claro, condiciones en viñetas cortas, pista junto al botón deshabilitado y explicación de la transferencia antes de pagar.",
+   "propuesta": ".booking-summary",
+   "original": ".booking-summary",
+   "modulo": "reserva"
+  }
+ ],
+ "panel": [
+  {
+   "id": "p1",
+   "titulo": "Cabecera «Tu cuenta»",
+   "detalle": "Sin «07 / Academia Law» y alineada a la izquierda.",
+   "propuesta": ".page-head",
+   "original": ".page-head",
+   "modulo": "acabado"
+  },
+  {
+   "id": "p2",
+   "titulo": "Próxima sesión destacada",
+   "detalle": "Fecha, hora de Chile, entrar a la sesión y añadir al calendario. En móvil entra en la primera pantalla.",
+   "propuesta": ".upcoming-session",
+   "original": null,
+   "modulo": "cuenta"
+  },
+  {
+   "id": "p3",
+   "titulo": "Búsqueda compacta",
+   "detalle": "En una fila en PC, con ayuda breve según la pestaña.",
+   "propuesta": "form#history-search",
+   "original": "form#history-search",
+   "modulo": "cuenta"
+  },
+  {
+   "id": "p4",
+   "titulo": "Tarjeta de sesión: una acción principal",
+   "detalle": "Sin identificadores internos, hora de Chile en el título y estado como etiqueta. Una acción rellena (Entrar a Meet o Ver estado y plazo); el resto como enlaces y «Cancelar» discreto al final.",
+   "propuesta": ".panel-layout article.session-detail",
+   "original": ".panel-layout article.session-detail",
+   "modulo": "cuenta"
+  },
+  {
+   "id": "p5",
+   "titulo": "«Tu cuenta» con menos peso",
+   "detalle": "Ver horarios y Comprar pack como botones; Actualizar cuenta y Cerrar sesión como enlaces. En móvil va después de las sesiones.",
+   "propuesta": ".panel-layout.api-account > aside",
+   "original": ".panel-layout.api-account > aside",
+   "modulo": "cuenta"
+  }
+ ],
+ "operation": [
+  {
+   "id": "o1",
+   "titulo": "Estado en grande",
+   "detalle": "El estado deja de ser un subtítulo gris y pasa a etiqueta «Estado» con texto serif cobre bajo «Tu operación.»",
+   "propuesta": ".page-head",
+   "original": ".page-head",
+   "modulo": "operacion"
+  },
+  {
+   "id": "o2",
+   "titulo": "Operación a dos columnas",
+   "detalle": "Izquierda: total, plazo y sesiones. Derecha: panel fijo «qué hacer ahora» (datos de transferencia, Copiar datos, «Ya transferí» y Desistir discreto, o el estado y sus botones si ya no se puede pagar). En móvil, una columna en ese orden.",
+   "propuesta": "section.operation-layout",
+   "original": "section.operation-content",
+   "modulo": "operacion"
+  }
+ ],
+ "admin": [
+  {
+   "id": "a1",
+   "titulo": "Pestañas Hoy | Agenda",
+   "detalle": "Antes: 11 botones con borde en varias filas. Ahora: pestañas con la vista activa marcada y las 8 gestiones como una fila de enlaces discretos.",
+   "propuesta": ".admin-nav",
+   "original": ".ui-actions:has([data-ops-today])",
+   "modulo": "jose-hoy"
+  },
+  {
+   "id": "a2",
+   "titulo": "Tablero de Hoy",
+   "detalle": "Fecha larga y hora de Chile; a la izquierda atención pendiente («Todo al día» en vez de ceros) y la próxima sesión en tarjeta azul con «Abrir Google Meet» primero; a la derecha las listas del día compactas.",
+   "propuesta": ".today-content",
+   "original": ".today-content",
+   "modulo": "jose-hoy"
+  }
+ ],
+ "agenda": [
+  {
+   "id": "g1",
+   "titulo": "Pestañas Hoy | Agenda",
+   "detalle": "Pestañas con la vista activa marcada y gestiones como enlaces discretos.",
+   "propuesta": ".admin-nav",
+   "original": ".ui-actions:has([data-ops-today])",
+   "modulo": "jose-hoy"
+  },
+  {
+   "id": "g2",
+   "titulo": "Sesiones del período en filas",
+   "detalle": "Cada sesión pasa de ~230 px a una fila: nombre y fecha | tipo y estado | Abrir Google Meet y Ver operación.",
+   "propuesta": ".agenda-content .agenda-sessions",
+   "original": ".agenda-content .agenda-sessions",
+   "modulo": "jose-agenda"
+  },
+  {
+   "id": "g3",
+   "titulo": "La semana en una mirada",
+   "detalle": "Antes: siete columnas estrechas con textos cortados (página de ~7.400 px). Ahora: cada día es una franja con bloques compactos; libres, confirmados (azul) y pendientes (borde cobre) se distinguen. Página de ~3.200 px.",
+   "propuesta": ".agenda-days",
+   "original": ".agenda-days",
+   "modulo": "jose-agenda"
+  }
+ ]
+}

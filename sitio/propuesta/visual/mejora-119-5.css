@@ -1,0 +1,20 @@
+/* Paquete 5 · José: Agenda legible en PC y Hoy sin ruido. Solo selectores .variant-c. */
+.variant-c .agenda-days{margin:24px 0 40px}
+.variant-c .agenda-day{display:grid;gap:12px;padding:22px 24px;border:1px solid #A4B4D0;background:#FFF8F0}
+.variant-c .agenda-day>h3{grid-column:1/-1;margin:0;font-size:22px}
+.variant-c .agenda-day>p,.variant-c .agenda-day>.agenda-day-meta{grid-column:1/-1;margin:0;font-size:14px;color:#5B6478}
+.variant-c .agenda-day>.button[data-agenda-close]{grid-column:1/-1;justify-self:start;min-height:40px;padding:8px 14px;font-size:14px;width:auto}
+.variant-c .agenda-slot{margin:0;padding:14px 16px;border:1px solid #D9D2C4;background:#FFFFFF;display:flex;flex-direction:column;gap:8px}
+.variant-c .agenda-slot h4{margin:0;font-size:15px;line-height:1.35}
+.variant-c .agenda-slot .button{white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none;min-height:40px;padding:8px 12px;font-size:14px;width:auto;align-self:flex-start}
+.variant-c .agenda-slot p{margin:0;font-size:14px;line-height:1.45}
+.variant-c .agenda-slot>.button{margin:0}
+.variant-c .agenda-slot p .button{margin:6px 6px 0 0}
+@media (min-width:960px){
+ .variant-c .agenda-days{display:grid;grid-template-columns:1fr!important;gap:20px}
+ .variant-c .agenda-day{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+}
+@media (max-width:600px){
+ .variant-c .agenda-day{grid-template-columns:1fr;padding:16px}
+ .variant-c .agenda-slot>.button,.variant-c .agenda-slot p .button,.variant-c .agenda-day>.button[data-agenda-close]{width:100%;justify-content:center;text-align:center}
+}

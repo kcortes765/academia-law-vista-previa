@@ -1,0 +1,13 @@
+/* Folio 118 · mejora «inicio»: orientación entre servicios y pasos para reservar. */
+/* Portada · orientación entre servicios. Lista breve con aire; sin precios repetidos (viven en «Sesiones y precios»).
+   El recuadro conserva su altura natural: no fija alturas ni recorta las acciones del hero en móvil. */
+.variant-c .service-guide .guide-list{list-style:none;margin:1.5rem 0 1rem;padding:0;display:grid;gap:0}
+.variant-c .service-guide .guide-list li{display:grid;gap:.25rem;padding:.75rem 0;border-top:1px solid var(--line);line-height:1.35}
+.variant-c .service-guide .guide-list li:last-child{border-bottom:1px solid var(--line)}
+.variant-c .service-guide .guide-list b{font-family:Source Serif,Georgia,serif;font-size:1.15rem;font-weight:500;letter-spacing:-.01em}
+.variant-c .service-guide .guide-list span{font-size:.95rem;overflow-wrap:anywhere}
+.variant-c .service-guide .guide-note{font-size:.9rem;line-height:1.45;margin:0}
+.variant-c .service-guide .guide-links{display:grid;gap:.25rem;margin-top:.5rem}
+.variant-c .service-guide .guide-links a+a{border-bottom:0;padding-top:.5rem;font-size:.9rem;text-decoration:underline;text-underline-offset:.2em;justify-content:flex-start}
+.variant-c .booking-steps b{font-variant-numeric:lining-nums}
+@media(max-width:639px){.variant-c .service-guide .guide-list{margin-top:1rem}.variant-c .service-guide .guide-list li{padding:.6rem 0}}

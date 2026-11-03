@@ -1,0 +1,4 @@
+/* Paquete 2 · parte de la cuenta del alumno (mejora «cuenta»): hora de Chile y letra pequeña de las tarjetas de sesión. */
+.variant-c .session-tz{font-weight:400;font-size:.8em;color:var(--muted,#5B6478)}
+.variant-c .session-fineprint{font-size:14px;color:var(--muted,#5B6478);margin:4px 0}
+.variant-c .session-hint{margin:10px 0;padding:10px 14px;border-left:3px solid #A6532E;background:#F7F4EE;font-size:15px;line-height:1.5;max-width:60ch}

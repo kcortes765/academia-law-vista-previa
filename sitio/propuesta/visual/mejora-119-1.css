@@ -1,0 +1,38 @@
+/* Paquete 119-1 · Inicio: portada limpia, pasos claros, servicios accionables y José visible.
+   Solo afecta a la vista de inicio (body.variant-c). Sin animaciones ni colores nuevos fuera de la paleta. */
+
+/* Portada: líneas decorativas y bloque de acciones */
+.variant-c .editorial-hero .voice-field path:nth-of-type(3),.variant-c .editorial-hero .voice-field path:nth-of-type(4){display:none}
+.variant-c .editorial-hero .editorial-axis{display:none}
+.variant-c .editorial-hero .hero-copy .actions{position:relative;z-index:2}
+.variant-c .editorial-hero{padding-bottom:56px}
+@media(min-width:960px){.variant-c .editorial-hero .voice-field{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 15%,#000 28%);mask-image:linear-gradient(90deg,transparent 0,transparent 15%,#000 28%)}}
+@media(max-width:959px){.variant-c .editorial-hero{padding-bottom:40px}.variant-c .editorial-hero .voice-field{display:none}}
+
+/* Franja de pasos: título sobre descripción; en PC siguen tres columnas */
+.variant-c .booking-steps>span{display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.variant-c .booking-steps>span>b{display:block;font-size:15px}
+@media(max-width:639px){.variant-c .booking-steps{gap:16px}}
+
+/* Tarjeta guía: rótulo legible en cobre */
+.variant-c .first-session .first-session-body>.eyebrow{color:#A6532E;font-size:12px;letter-spacing:.12em}
+
+/* Servicios: botón con texto, columna de acción automática */
+.variant-c .editorial-services .service-line{grid-template-columns:50px minmax(0,1fr) 300px auto}
+.variant-c .editorial-services .service-line .service-cta{width:auto;min-width:0;height:auto;min-height:44px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;white-space:nowrap;border:1px solid #172F63;border-radius:0;color:#172F63;background:transparent;transition:background-color .15s ease-out,color .15s ease-out}
+.variant-c .editorial-services .service-line .service-cta:hover{background:#172F63;color:#FFF8F0}
+.variant-c .service-tag{display:inline-block;margin-left:12px;padding:2px 8px;border:1px solid #A6532E;color:#A6532E;font-size:11px;letter-spacing:.1em;text-transform:uppercase;vertical-align:middle}
+.variant-c .editorial-services .service-line>div:has(.service-tag) h3{display:inline}
+@media(max-width:1100px){.variant-c .editorial-services .service-line{grid-template-columns:30px minmax(0,1fr) 230px auto}}
+@media(max-width:639px){.variant-c .editorial-services .service-line{grid-template-columns:24px minmax(0,1fr)}.variant-c .editorial-services .service-line .service-cta{grid-column:2/-1;grid-row:auto;width:100%;justify-content:space-between}}
+
+/* Cierre de servicios: llamada a la acción tras el pack */
+.variant-c .services-close{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:40px;padding-top:28px;border-top:1px solid #8391A8}
+.variant-c .services-close p{margin:0;max-width:52ch}
+@media(max-width:600px){.variant-c .services-close{flex-direction:column;align-items:stretch}.variant-c .services-close .button{width:100%;justify-content:space-between}}
+
+/* José: rol bajo el nombre (fondo azul, cobre claro en contraste AA) */
+.variant-c .about-role{margin:18px 0 22px;font-size:16px;line-height:1.5;color:#ECC6AE;max-width:28ch}
+
+/* Enlace de la cita con área táctil suficiente */
+.variant-c .about-quote figcaption a{display:inline-flex;align-items:center;min-height:24px;padding:2px 2px}

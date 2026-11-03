@@ -1,0 +1,45 @@
+/* Paquete 4 · Cuenta y operación del alumno: tarjetas ordenadas, búsqueda discreta y acciones agrupadas. */
+
+/* Tarjetas de sesión del panel: una columna de texto y una fila de acciones alineada a la izquierda. */
+.variant-c .panel-layout article.session-detail{display:flex;flex-wrap:wrap;align-items:center;gap:10px 10px;padding:22px 0;border-bottom:1px solid #A4B4D0;max-width:none}
+.variant-c .panel-layout article.session-detail>*{flex:0 0 100%;margin:0}
+.variant-c .panel-layout article.session-detail>h3{order:0}
+.variant-c .panel-layout article.session-detail>.session-meta{order:1}
+.variant-c .panel-layout article.session-detail>p,
+.variant-c .panel-layout article.session-detail>section{order:2}
+.variant-c .panel-layout article.session-detail>.ui-actions{display:contents}
+.variant-c .panel-layout article.session-detail>.button,
+.variant-c .panel-layout article.session-detail>a.button,
+.variant-c .panel-layout article.session-detail>.ui-actions>.button,
+.variant-c .panel-layout article.session-detail>.ui-actions>a{order:5;flex:0 0 auto;margin:6px 0 0 0;padding-left:14px;padding-right:14px}
+
+/* Búsqueda discreta: una sola fila en PC (campo, estado y Buscar). */
+.variant-c form#history-search{display:grid;grid-template-columns:minmax(0,1fr) 220px auto;gap:12px;align-items:end;margin-bottom:8px}
+.variant-c form#history-search:not(:has(select)){grid-template-columns:minmax(0,1fr) auto}
+.variant-c form#history-search>label{margin:0}
+.variant-c form#history-search>.button{margin:0;justify-self:start}
+.variant-c form#history-search>.history-help{grid-column:1/-1;margin:0}
+.variant-c .history-help,
+.variant-c .history-count{font-size:14px;line-height:1.5;color:var(--muted);margin:6px 0 0}
+.variant-c .history-count{margin:14px 0 6px}
+
+/* Tu cuenta primero en móvil, con sus acciones en dos columnas. */
+@media(max-width:959px){
+ .variant-c .panel-layout.api-account>aside{order:-1;margin-bottom:24px}
+ .variant-c .panel-layout.api-account>aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .variant-c .panel-layout.api-account>aside>h2,
+ .variant-c .panel-layout.api-account>aside>p{grid-column:1/-1;margin:0}
+ .variant-c .panel-layout.api-account>aside>.button{width:100%;min-height:44px;margin:0;justify-content:center}
+ .variant-c form#history-search{grid-template-columns:minmax(0,1fr);gap:12px}
+ .variant-c form#history-search:not(:has(select)){grid-template-columns:minmax(0,1fr)}
+ .variant-c form#history-search>.button{justify-self:stretch;min-height:44px}
+}
+
+/* Móvil: los botones de cada tarjeta forman dos columnas de 44 px de alto. */
+@media(max-width:600px){
+ .variant-c .panel-layout article.session-detail{align-items:stretch}
+ .variant-c .panel-layout article.session-detail>.button,
+ .variant-c .panel-layout article.session-detail>a.button,
+ .variant-c .panel-layout article.session-detail>.ui-actions>.button,
+ .variant-c .panel-layout article.session-detail>.ui-actions>a{flex:1 1 calc(50% - 5px);min-height:44px;justify-content:center;text-align:center}
+}

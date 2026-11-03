@@ -1,0 +1,22 @@
+/* Misma gramática espacial y mismos roles semánticos en las cinco paletas documentadas. */
+body.variant-c{--ink:var(--p-primary);--night:var(--p-night);--paper:var(--p-paper);--bg:var(--p-bg);--text:var(--p-text);--muted:var(--p-muted);--soft:var(--p-soft);--line:var(--p-line);--accent:var(--p-accent);--blue:var(--p-highlight)}
+.variant-c .first-session.reactive-plane:before{background:radial-gradient(ellipse 185px 130px at var(--spot-x,65%) var(--spot-y,35%),var(--p-haloCore) 0%,var(--p-haloEdge) 42%,transparent 78%),radial-gradient(ellipse 280px 180px at var(--spot-x,65%) var(--spot-y,35%),var(--p-haloTrail),transparent 84%)}
+.variant-c[data-palette] .first-session.reactive-plane:before{background:radial-gradient(ellipse 185px 130px at var(--spot-x,65%) var(--spot-y,35%),var(--p-haloCore) 0%,var(--p-haloEdge) 42%,transparent 78%),radial-gradient(ellipse 280px 180px at var(--spot-x,65%) var(--spot-y,35%),var(--p-haloTrail),transparent 84%)}
+.variant-c .slot[data-availability=selected],.variant-c .slot[data-availability=selected]:hover:not(:disabled),.variant-c .slot[data-availability=selected].compare-hover:not(:disabled){background:var(--p-primary);color:var(--p-onDark)}
+.variant-c .verification{background:var(--p-infoBg);color:var(--p-info);border-color:var(--p-info)}
+.variant-c .verification.is-verified{background:var(--p-successBg);border-color:var(--p-success)}
+.variant-c .verification.is-verified #reservation-email-status{color:var(--p-success)}
+.variant-c .required-star,.variant-c .required-help,.variant-c .over-limit,.variant-c .pilot-error{color:var(--p-error)}
+.variant-c .booking-grid>aside .required-help{color:var(--p-errorLight)}
+.variant-c .pilot-alert{background:var(--p-warningBg);color:var(--p-warning)}
+.variant-c .pilot-notice{background:var(--p-infoBg);color:var(--p-info)}
+.variant-c .compare-locate{outline:3px dashed var(--p-accent)!important;outline-offset:5px}
+
+.variant-c :is(input,select,textarea,.slot,.icon-button,.month-day){border-color:var(--p-controlBorder)}
+.variant-c :is(button,a,input,select,textarea,summary):focus-visible,.variant-c .compare-focus{outline:3px solid var(--p-accent)!important;outline-offset:4px}
+.variant-c :is(.editorial-hero,.about-heading,.next-session,.booking-grid>aside) :focus-visible,.variant-c :is(.editorial-hero,.about-heading,.next-session,.booking-grid>aside) .compare-focus{outline-color:var(--p-highlight)!important}
+
+.variant-c hr{border-color:var(--p-line);border-style:solid}
+.variant-c svg{fill:none}
+.variant-c input[type=checkbox]{color:var(--p-text);accent-color:var(--p-primary)}
+.variant-c main [tabindex="-1"]:focus-visible{outline:3px solid var(--p-accent);outline-offset:4px}
