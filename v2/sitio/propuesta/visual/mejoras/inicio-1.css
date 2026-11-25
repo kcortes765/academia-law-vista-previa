@@ -1,0 +1,44 @@
+/* inicio-1 · Portada con credenciales */
+
+/* Portada · orientación entre servicios. Lista breve con aire; sin precios repetidos (viven en «Sesiones y precios»).
+   El recuadro conserva su altura natural: no fija alturas ni recorta las acciones del hero en móvil. */
+.variant-c .service-guide .guide-list{list-style:none;margin:1.5rem 0 1rem;padding:0;display:grid;gap:0}
+.variant-c .service-guide .guide-list li{display:grid;gap:.25rem;padding:.75rem 0;border-top:1px solid var(--line);line-height:1.35}
+.variant-c .service-guide .guide-list li:last-child{border-bottom:1px solid var(--line)}
+.variant-c .service-guide .guide-list b{font-family:Source Serif,Georgia,serif;font-size:1.15rem;font-weight:500;letter-spacing:-.01em}
+.variant-c .service-guide .guide-list span{font-size:.95rem;overflow-wrap:anywhere}
+.variant-c .service-guide .guide-note{font-size:.9rem;line-height:1.45;margin:0}
+.variant-c .service-guide .guide-links{display:grid;gap:.25rem;margin-top:.5rem}
+.variant-c .service-guide .guide-links a+a{border-bottom:0;padding-top:.5rem;font-size:.9rem;text-decoration:underline;text-underline-offset:.2em;justify-content:flex-start}
+@media(max-width:639px){.variant-c .service-guide .guide-list{margin-top:1rem}.variant-c .service-guide .guide-list li{padding:.6rem 0}}
+
+/* Portada: líneas decorativas y bloque de acciones */
+.variant-c .editorial-hero .voice-field path:nth-of-type(3),.variant-c .editorial-hero .voice-field path:nth-of-type(4){display:none}
+.variant-c .editorial-hero .editorial-axis{display:none}
+.variant-c .editorial-hero .hero-copy .actions{position:relative;z-index:2}
+.variant-c .editorial-hero{padding-bottom:56px}
+@media(min-width:960px){.variant-c .editorial-hero .voice-field{-webkit-mask-image:linear-gradient(90deg,transparent 0,transparent 15%,#000 28%);mask-image:linear-gradient(90deg,transparent 0,transparent 15%,#000 28%)}}
+@media(max-width:959px){.variant-c .editorial-hero{padding-bottom:40px}.variant-c .editorial-hero .voice-field{display:none}}
+
+/* Tarjeta guía: rótulo legible en cobre */
+.variant-c .first-session .first-session-body>.eyebrow{color:#A6532E;font-size:12px;letter-spacing:.12em}
+
+.variant-c .hero-credentials{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px;font-size:14px;line-height:1.45;color:var(--blue);position:relative;z-index:2}
+.variant-c .hero-credentials li{position:relative;padding-left:22px}
+.variant-c .hero-credentials li::before{content:'';position:absolute;left:0;top:.72em;width:12px;height:1px;background:var(--blue)}
+.variant-c .editorial-hero .hero-footnote{font-size:13px;letter-spacing:.04em}
+
+.variant-c .first-session .folio{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+
+@media(max-width:959px){
+ .variant-c .first-session.service-guide{padding:22px 20px}
+ .variant-c .first-session.service-guide .first-session-body{padding-top:0}
+ .variant-c .first-session.service-guide h2{font-size:28px;line-height:1.15;margin:6px 0 12px}
+ .variant-c .service-guide .guide-list{margin:0}
+ .variant-c .service-guide .guide-list li{display:grid;grid-template-columns:116px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:8px 0}
+ .variant-c .service-guide .guide-list b{font-size:17px;font-weight:500}
+ .variant-c .service-guide .guide-list span{font-size:14px;line-height:1.4}
+ .variant-c .service-guide .guide-note{font-size:13px;margin:10px 0 2px}
+ .variant-c .service-guide .guide-links{display:flex;flex-wrap:wrap;gap:0 20px;align-items:center;margin-top:0}
+ .variant-c .service-guide .guide-links a,.variant-c .service-guide .guide-links a+a{display:inline-flex;gap:6px;align-items:center;width:auto;min-height:44px;padding:0;border-bottom:0;text-decoration:underline;text-underline-offset:4px;font-size:14px}
+}

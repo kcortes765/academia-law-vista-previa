@@ -1,0 +1,12 @@
+/* inicio-4 · Sobre mí, después de los precios */
+
+/* José: rol bajo el nombre (fondo azul, cobre claro en contraste AA) */
+.variant-c .about-role{margin:18px 0 22px;font-size:16px;line-height:1.5;color:#ECC6AE;max-width:28ch}
+
+/* Enlace de la cita con área táctil suficiente */
+.variant-c .about-quote figcaption a{display:inline-flex;align-items:center;min-height:24px;padding:2px 2px}
+
+.variant-c .about-jose .about-linkedin{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid var(--blue);color:var(--blue)}
+.variant-c .about-jose .about-linkedin svg{width:18px;height:18px}
+.variant-c .about-jose .about-linkedin:hover,.variant-c .about-jose .about-linkedin:focus-visible{background:var(--blue);color:var(--night)}
+.variant-c .about-jose .about-linkedin:focus-visible{outline:3px solid var(--blue);outline-offset:4px}

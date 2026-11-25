@@ -1,0 +1,15 @@
+/* inicio-3 · Sesiones y precios, antes */
+
+/* Servicios: botón con texto, columna de acción automática */
+.variant-c .editorial-services .service-line{grid-template-columns:50px minmax(0,1fr) 300px auto}
+.variant-c .editorial-services .service-line .service-cta{width:auto;min-width:0;height:auto;min-height:44px;padding:0 18px;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;line-height:1.2;white-space:nowrap;border:1px solid #172F63;border-radius:0;color:#172F63;background:transparent;transition:background-color .15s ease-out,color .15s ease-out}
+.variant-c .editorial-services .service-line .service-cta:hover{background:#172F63;color:#FFF8F0}
+.variant-c .service-tag{display:inline-block;margin-left:12px;padding:2px 8px;border:1px solid #A6532E;color:#A6532E;font-size:11px;letter-spacing:.1em;text-transform:uppercase;vertical-align:middle}
+.variant-c .editorial-services .service-line>div:has(.service-tag) h3{display:inline}
+@media(max-width:1100px){.variant-c .editorial-services .service-line{grid-template-columns:30px minmax(0,1fr) 230px auto}}
+@media(max-width:639px){.variant-c .editorial-services .service-line{grid-template-columns:24px minmax(0,1fr)}.variant-c .editorial-services .service-line .service-cta{grid-column:2/-1;grid-row:auto;width:100%;justify-content:space-between}}
+
+/* Cierre de servicios: llamada a la acción tras el pack */
+.variant-c .services-close{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:40px;padding-top:28px;border-top:1px solid #8391A8}
+.variant-c .services-close p{margin:0;max-width:52ch}
+@media(max-width:600px){.variant-c .services-close{flex-direction:column;align-items:stretch}.variant-c .services-close .button{width:100%;justify-content:space-between}}

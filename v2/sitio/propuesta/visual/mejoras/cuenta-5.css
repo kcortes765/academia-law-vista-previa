@@ -1,0 +1,18 @@
+/* cuenta-5 · Pestañas, vacíos y lista de operaciones */
+
+.variant-c .session-meta .operation-amount{font-family:Source Serif,Georgia,serif;font-variant-numeric:lining-nums tabular-nums}
+
+/* Panel: pestañas como control segmentado; «Tu cuenta» sobre papel con botones apilados. */
+.variant-c .panel-tabs{gap:0;margin:0 0 2rem;border-bottom:1px solid var(--line)}
+.variant-c .panel-tabs .button{min-height:48px;margin:0 0 -1px;padding:.5rem 1rem;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--muted)}
+.variant-c .panel-tabs .button:hover{background:var(--soft);color:var(--ink)}
+.variant-c .panel-tabs .button[aria-pressed=true]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+
+@media(max-width:639px){
+ .variant-c .panel-tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+ .variant-c .panel-tabs::-webkit-scrollbar{display:none}
+ .variant-c .panel-tabs .button{flex:0 0 auto;white-space:nowrap}
+}
+@media(forced-colors:active){
+ .variant-c .panel-tabs .button[aria-pressed=true]{border-bottom-color:Highlight}
+}

@@ -1,0 +1,19 @@
+/* cuenta-1 · Próxima sesión destacada */
+
+/* Próxima sesión: plano azul con fecha serif grande en arena; acción principal arena, secundaria con borde arena. */
+.variant-c .upcoming-session{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;gap:.5rem 2.5rem;margin:0 0 2.5rem;padding:2rem 2.5rem;background:var(--p-secondary);color:var(--p-onDark);border-top:3px solid var(--law-sand)}
+.variant-c .upcoming-session h2{grid-column:1/-1;margin:0 0 .5rem;font-family:inherit;font-size:1rem;font-weight:600;letter-spacing:.08em;font-variant-caps:all-small-caps;color:var(--law-sand)}
+.variant-c .upcoming-session p{margin:0}
+.variant-c .upcoming-date{display:flex;align-items:baseline;gap:1rem}
+.variant-c .upcoming-day{font-family:Source Serif,Georgia,serif;font-size:clamp(3rem,10vw,5.5rem);line-height:.9;font-weight:450;letter-spacing:-.03em;font-variant-numeric:lining-nums tabular-nums;color:var(--law-sand)}
+.variant-c .upcoming-month{font-variant-caps:all-small-caps;letter-spacing:.06em;font-size:1.15rem}
+.variant-c .upcoming-session .upcoming-time{margin-top:.5rem;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.variant-c .upcoming-time strong{color:var(--law-sand);font-weight:600}
+.variant-c .upcoming-kind{align-self:center;padding-left:2.5rem;border-left:1px solid color-mix(in srgb,var(--law-sand) 45%,transparent);font-family:Source Serif,Georgia,serif;font-size:1.6rem;line-height:1.25}
+.variant-c .upcoming-session .ui-actions{grid-column:1/-1;margin:1rem 0 0}
+.variant-c .upcoming-session .button{background:var(--law-sand);border-color:var(--law-sand);color:var(--night)}
+.variant-c .upcoming-session .button.secondary{background:transparent;border:1px solid var(--law-sand);color:var(--p-onDark)}
+.variant-c .upcoming-session .button:hover{background:var(--law-light);border-color:var(--law-light);color:var(--night)}
+.variant-c .upcoming-session :focus-visible{outline-color:var(--p-highlight)!important}
+.variant-c .upcoming-note{flex-basis:100%}
+@media(max-width:639px){.variant-c .upcoming-session{grid-template-columns:minmax(0,1fr);padding:1.5rem}.variant-c .upcoming-kind{padding-left:0;border-left:0;font-size:1.35rem}.variant-c .upcoming-session .button{width:100%;justify-content:center}}

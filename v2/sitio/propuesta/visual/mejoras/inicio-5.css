@@ -1,0 +1,7 @@
+/* inicio-5 · «Qué pasa en una sesión» */
+
+.variant-c .method-cta{margin-top:28px}
+
+@media(max-width:959px){
+ .variant-c .method-cta{min-height:44px}
+}

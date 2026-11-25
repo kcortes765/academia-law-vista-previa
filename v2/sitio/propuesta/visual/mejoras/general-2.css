@@ -1,0 +1,29 @@
+/* general-2 · Pie de página ordenado */
+
+/* Inicio: la sección de servicios cierra directamente sobre el pie, sin franja vacía. */
+.variant-c[data-view=home] main{padding-bottom:0!important}
+.variant-c[data-view=home] .site-footer{margin-top:0!important}
+
+/* Pie en tres bandas: marca y contacto / legales / administración, nota y accesibilidad. */
+.variant-c .site-footer{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) auto;gap:16px 48px;align-items:start;padding-top:40px;padding-bottom:32px}
+.variant-c .site-footer .footer-brand{grid-column:1;margin:0;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.variant-c .footer-wordmark{font-family:Source Serif,Georgia,serif;font-size:24px;line-height:1.15;color:var(--ink)}
+.variant-c .site-footer .support-contact{grid-column:2/-1;justify-self:end;align-self:end}
+.variant-c .site-footer .legal-links{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 24px;margin:0;padding-top:16px;border-top:1px solid #A4B4D0}
+.variant-c .site-footer a{display:inline-flex;align-items:center;min-height:32px}
+.variant-c .site-footer [data-route=admin]{font-size:13px;color:var(--muted)}
+.variant-c .site-footer>[data-route=admin],.variant-c .site-footer>span,.variant-c .site-footer>.experience-accessibility{align-self:center}
+.variant-c .site-footer .experience-accessibility{justify-self:end}
+
+/* Panel de accesibilidad: se ancla a su control y no se sale de la ventana. */
+.variant-c .experience-accessibility{position:relative}
+.variant-c .experience-accessibility>div{right:0;left:auto;max-width:calc(100vw - 32px)}
+
+/* Móvil: el pie se apila en una columna y el panel de accesibilidad abre hacia la derecha del control. */
+@media(max-width:700px){
+ .variant-c .site-footer{grid-template-columns:minmax(0,1fr);gap:16px;padding-top:32px}
+ .variant-c .site-footer>*{grid-column:1!important}
+ .variant-c .site-footer .legal-links{display:grid;gap:0;justify-items:start}
+ .variant-c .site-footer .experience-accessibility,.variant-c .site-footer .support-contact{justify-self:start}
+ .variant-c .experience-accessibility>div{left:0;right:auto}
+}

@@ -1,0 +1,28 @@
+/* general-3 · Avisos, foco y menú */
+
+/* Ajustes que antes cambiaban app.css: avisos con filete del color de acento y errores con el color de error de la paleta. */
+.session-detail [aria-invalid=true]{border-color:var(--p-error,#a33025)}
+.notice,.form-message{border-left:3px solid var(--accent,currentColor)}
+.required-star{color:var(--p-error,#a33025)}
+
+/* Avisos: arena suave con filete cobre; errores con filete y tinte de --p-error. Texto explícito para cualquier superficie. */
+.variant-c .notice{background:color-mix(in srgb,var(--law-light) 35%,var(--paper));border-left:3px solid var(--accent);color:var(--text)}
+.variant-c :is(#page-message,.notice[role=alert]){background:color-mix(in srgb,var(--p-error) 8%,var(--paper));border-left-color:var(--p-error)}
+
+/* Desplazamiento: el encabezado del sitio no es sticky ni fixed, así que basta un margen. */
+html{scroll-padding-top:16px}
+
+/* Foco por programa en títulos: sin marco cobre (los controles conservan su foco visible). */
+.variant-c main h1[tabindex="-1"]:focus,.variant-c main h2[tabindex="-1"]:focus,.variant-c main h3[tabindex="-1"]:focus,.variant-c main h1[tabindex="-1"]:focus-visible,.variant-c main h2[tabindex="-1"]:focus-visible,.variant-c main h3[tabindex="-1"]:focus-visible{outline:none;box-shadow:none}
+
+/* Página actual en el menú: recolorea la misma marca que ya existe (editorial.css) en cobre; sin segundo subrayado ni tocar «Ver horarios». */
+.variant-c .site-header nav>a[aria-current=page]:not(.button):after{background:#A6532E;height:2px}
+
+@media(min-width:960px){
+ .variant-c .operation-content{margin-left:0}
+}
+
+@media(max-width:700px){
+ /* En móvil el menú no lleva la marca lineal (editorial.css la oculta): la página actual se indica con subrayado de texto. */
+ .variant-c .site-header nav>a[aria-current=page]:not(.button){text-decoration:underline;text-decoration-color:#A6532E;text-decoration-thickness:2px;text-underline-offset:8px}
+}

@@ -1,0 +1,17 @@
+/* admin-1 · Pestañas Hoy / Agenda */
+
+.variant-c[data-view=admin] .admin-nav{display:flex;flex-wrap:wrap;align-items:center;gap:0 28px;margin:8px 0 32px}
+.variant-c[data-view=admin] .admin-nav>[data-ops-today],.variant-c[data-view=admin] .admin-nav>[data-ops-agenda]{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:10px 2px;margin:0 0 -1px;min-height:44px;font-size:16px;font-weight:600;color:var(--muted);box-shadow:none}
+.variant-c[data-view=admin] .admin-nav>[aria-current=page]{color:var(--ink);border-bottom-color:var(--accent)}
+.variant-c[data-view=admin] .admin-nav>[data-ops-refresh]{margin-left:auto;background:none;border:0;padding:0 2px;min-height:44px;font-size:14px;font-weight:500;color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line);box-shadow:none}
+.variant-c[data-view=admin] .admin-nav>details.admin-more{flex:1 0 100%}
+@media(min-width:761px){
+ .variant-c[data-view=admin] .admin-nav>details.admin-more::details-content{display:contents}
+ .variant-c[data-view=admin] .admin-nav .admin-more-actions{flex:1 0 100%;display:flex;flex-wrap:wrap;gap:0 22px;padding:4px 0;margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+ .variant-c[data-view=admin] .admin-nav .admin-more-actions .button{background:none;border:0;padding:0;min-height:40px;font-size:14px;font-weight:500;color:var(--muted);box-shadow:none}
+ .variant-c[data-view=admin] .admin-nav .admin-more-actions .button:hover{color:var(--ink);text-decoration:underline}
+}
+@media(max-width:760px){
+ .variant-c[data-view=admin] .admin-nav{gap:0 18px}
+}
+.variant-c[data-view=admin] .admin-nav>[data-ops-today]:hover,.variant-c[data-view=admin] .admin-nav>[data-ops-agenda]:hover{color:var(--ink)}

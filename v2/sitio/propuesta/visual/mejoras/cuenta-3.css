@@ -1,0 +1,68 @@
+/* cuenta-3 · Tarjeta de sesión */
+
+/* Hora de Chile y letra pequeña de las tarjetas de sesión. */
+.variant-c .session-tz{font-weight:400;font-size:.8em;color:var(--muted,#5B6478)}
+.variant-c .session-fineprint{font-size:14px;color:var(--muted,#5B6478);margin:4px 0}
+.variant-c .session-hint{margin:10px 0;padding:10px 14px;border-left:3px solid #A6532E;background:#F7F4EE;font-size:15px;line-height:1.5;max-width:60ch}
+
+/* Tarjetas de sesión del panel: una columna de texto y una fila de acciones alineada a la izquierda. */
+.variant-c .panel-layout article.session-detail{display:flex;flex-wrap:wrap;align-items:center;gap:10px 10px;padding:22px 0;border-bottom:1px solid #A4B4D0;max-width:none}
+.variant-c .panel-layout article.session-detail>*{flex:0 0 100%;margin:0}
+.variant-c .panel-layout article.session-detail>h3{order:0}
+.variant-c .panel-layout article.session-detail>.session-meta{order:1}
+.variant-c .panel-layout article.session-detail>p,
+.variant-c .panel-layout article.session-detail>section{order:2}
+.variant-c .panel-layout article.session-detail>.ui-actions{display:contents}
+.variant-c .panel-layout article.session-detail>.button,
+.variant-c .panel-layout article.session-detail>a.button,
+.variant-c .panel-layout article.session-detail>.ui-actions>.button,
+.variant-c .panel-layout article.session-detail>.ui-actions>a{order:5;flex:0 0 auto;margin:6px 0 0 0;padding-left:14px;padding-right:14px}
+
+/* Móvil: los botones de cada tarjeta forman dos columnas de 44 px de alto. */
+@media(max-width:600px){
+ .variant-c .panel-layout article.session-detail{align-items:stretch}
+ .variant-c .panel-layout article.session-detail>.button,
+ .variant-c .panel-layout article.session-detail>a.button,
+ .variant-c .panel-layout article.session-detail>.ui-actions>.button,
+ .variant-c .panel-layout article.session-detail>.ui-actions>a{flex:1 1 calc(50% - 5px);min-height:44px;justify-content:center;text-align:center}
+}
+
+/* Base compartida por panel y operación. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:22px 0;border-bottom:1px solid var(--line);max-width:none}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>*{flex:0 0 100%;margin:0}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>h3{order:0}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.session-meta{order:1}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>p,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>section{order:2}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions{display:contents}
+
+/* Acción principal: la única con relleno. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary){order:4;flex:0 0 auto;background:var(--ink)!important;color:var(--p-onDark)!important;border:1px solid var(--ink)!important;min-height:44px;padding:0 20px;font-size:15px;font-weight:600;margin:4px 8px 0 0;justify-content:center;transition:background-color .15s}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary):hover{background:var(--night)!important}
+
+/* Acciones secundarias: enlaces de texto. */
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move],
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{flex:0 0 auto;width:auto;background:none!important;border:0!important;box-shadow:none!important;padding:0 2px;min-height:44px;margin:4px 0 0;justify-content:flex-start;font-size:15px;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;text-underline-offset:5px;transition:text-decoration-color .15s,color .15s}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics]{order:5}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation]{order:6}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move]{order:7}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{order:8;color:var(--accent)}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move]:hover,
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]:hover{text-decoration-color:var(--accent)}
+.variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button:disabled{color:var(--muted);text-decoration:none;opacity:1;cursor:default}
+
+@media(max-width:600px){
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail{align-items:center;gap:8px 20px}
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>a.button[href*="meet.google.com"],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-operation]:not(.secondary){flex:1 1 100%;margin-right:0;min-height:48px;justify-content:center}
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button[data-ics],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.button.secondary[data-operation],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-move],
+ .variant-c :is(.panel-layout,.operation-layout) article.session-detail>.ui-actions>.button[data-student-cancel]{flex:0 0 auto;min-height:44px;justify-content:flex-start}
+}

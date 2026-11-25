@@ -1,0 +1,21 @@
+/* reserva-4 · Resumen de la reserva */
+
+/* Resumen (superficie oscura existente): filas con filete fino, «Quitar» discreto y total serif bajo filete cobre. */
+.variant-c .booking-summary .selection-line{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:0;padding:.5rem 0;border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent);font-variant-numeric:tabular-nums}
+.variant-c .booking-summary .selection-line .button{flex:none;margin:0;min-height:44px;padding:.25rem .75rem;font-size:.9rem;background:transparent;border:1px solid color-mix(in srgb,currentColor 45%,transparent);color:inherit}
+.variant-c .booking-summary .selection-line .button:hover{background:color-mix(in srgb,currentColor 12%,transparent);color:inherit}
+.variant-c .booking-summary .selection-total{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1rem;margin:1.5rem 0 1rem;padding-top:1rem;border-top:2px solid var(--accent)}
+.variant-c .booking-grid>.booking-summary .selection-total{border-top-color:var(--law-sand);color:var(--p-onDark)}
+.variant-c .booking-summary .selection-total strong{font-family:Source Serif,Georgia,serif;font-size:1.6rem;font-weight:500;font-variant-numeric:lining-nums tabular-nums}
+.variant-c .booking-grid>.booking-summary .selection-total strong{color:var(--law-sand)}
+.variant-c .booking-grid>aside :focus-visible{outline-color:var(--p-highlight)!important}
+
+.variant-c .booking-summary .summary-empty{font-family:'Source Serif 4','Source Serif Pro',Georgia,serif;font-style:italic;font-size:18px;line-height:1.45;color:#ECC6AE;margin:8px 0 20px}
+.variant-c .booking-summary .summary-rules{list-style:none;margin:0 0 20px;padding:16px 0 0;border-top:1px solid rgba(236,198,174,.35);display:grid;gap:8px;font-size:14px;line-height:1.5;color:#F9F4ED}
+.variant-c .booking-summary .summary-rules li{position:relative;padding-left:18px}
+.variant-c .booking-summary .summary-rules li::before{content:'';position:absolute;left:0;top:.72em;width:8px;height:1px;background:#ECC6AE}
+.variant-c .booking-summary .summary-hint{margin:10px 0 0;font-size:14px;color:#ECC6AE}
+
+/* «Continuar» desactivado legible, en el resumen de PC y en la barra móvil */
+.variant-c .booking-summary .button:disabled{background:rgba(249,244,237,.1)!important;color:rgba(249,244,237,.72)!important;border:1px solid rgba(249,244,237,.28)!important;opacity:1!important;cursor:not-allowed}
+.variant-c .booking-mobile-actions .button:disabled{background:#E6E0D4!important;color:#3A4560!important;border-color:#C9C1B2!important;opacity:1!important;cursor:not-allowed}

@@ -1,0 +1,40 @@
+/* cuenta-4 · «Tu cuenta» con menos peso */
+
+/* Panel: pestañas como control segmentado; «Tu cuenta» sobre papel con botones apilados. */
+.variant-c .panel-layout.api-account>aside{display:flex;flex-direction:column;gap:.5rem;align-self:start;padding:1.5rem;background:var(--paper);border-top:2px solid var(--accent);overflow-wrap:anywhere}
+.variant-c .panel-layout.api-account>aside .button{width:100%;justify-content:center;margin:0}
+
+/* Tu cuenta primero en móvil, con sus acciones en dos columnas. */
+@media(max-width:959px){
+ .variant-c .panel-layout.api-account>aside{order:-1;margin-bottom:24px}
+ .variant-c .panel-layout.api-account>aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .variant-c .panel-layout.api-account>aside>h2,
+ .variant-c .panel-layout.api-account>aside>p{grid-column:1/-1;margin:0}
+ .variant-c .panel-layout.api-account>aside>.button{width:100%;min-height:44px;margin:0;justify-content:center}
+}
+
+/* Tu cuenta: acciones secundarias como enlaces. */
+.variant-c .panel-layout.api-account>aside>[data-refresh-account],
+.variant-c .panel-layout.api-account>aside>[data-logout]{width:auto;justify-self:start;align-self:start;text-align:left;justify-content:flex-start;background:none!important;border:0!important;box-shadow:none!important;padding:0 2px;min-height:44px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;text-underline-offset:5px;transition:text-decoration-color .15s}
+.variant-c .panel-layout.api-account>aside>[data-refresh-account]:hover,
+.variant-c .panel-layout.api-account>aside>[data-logout]:hover{text-decoration-color:var(--accent)}
+
+@media(max-width:959px){
+ .variant-c .panel-layout.api-account>aside{order:1}
+}
+@media(min-width:761px) and (max-width:959px){
+ .variant-c .panel-layout.api-account>aside{margin:0;grid-template-columns:minmax(0,1fr)}
+ .variant-c .panel-layout.api-account>aside>.button:not([data-refresh-account]):not([data-logout]){width:100%}
+}
+@media(max-width:760px){
+ .variant-c .panel-layout.api-account>aside{margin:40px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+ .variant-c .panel-layout.api-account>aside>h2,
+ .variant-c .panel-layout.api-account>aside>p{grid-column:1/-1;margin:0}
+ .variant-c .panel-layout.api-account>aside>.button:not([data-refresh-account]):not([data-logout]){width:100%;min-height:44px;margin:0;justify-content:center}
+ .variant-c .panel-layout.api-account>aside>[data-refresh-account],
+ .variant-c .panel-layout.api-account>aside>[data-logout]{margin:0;justify-content:flex-start}
+}
+/* En PC «Tu cuenta» acompaña al recorrer la lista. */
+@media(min-width:960px){
+ .variant-c .panel-layout.api-account>aside{position:sticky;top:24px}
+}

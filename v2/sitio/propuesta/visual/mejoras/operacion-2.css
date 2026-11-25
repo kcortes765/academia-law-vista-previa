@@ -1,0 +1,39 @@
+/* operacion-2 · Operación a dos columnas */
+
+/* Pasos del pago, total y datos de transferencia en dos columnas. */
+.variant-c .payment-steps{margin:1.5rem 0}
+.variant-c[data-view=operation] .operation-total strong{font-family:Source Serif,Georgia,serif;font-variant-numeric:lining-nums tabular-nums}
+.variant-c[data-view=operation] .operation-total strong{font-size:1.6rem;font-weight:500}
+
+/* Operación: datos de transferencia como registro de dos columnas (dt/dd directos: «Copiar datos» los lee). */
+.variant-c[data-view=operation] .operation-content dl{display:grid;grid-template-columns:minmax(8rem,max-content) minmax(0,1fr);margin:1rem 0 1.5rem;border-top:1px solid var(--line)}
+.variant-c[data-view=operation] .operation-content :is(dt,dd){margin:0;padding:.5rem 0;border-bottom:1px solid var(--line)}
+.variant-c[data-view=operation] .operation-content dt{padding-right:1.5rem;color:var(--muted);font-variant-caps:all-small-caps;letter-spacing:.04em}
+.variant-c[data-view=operation] .operation-content dd{font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+
+@media(max-width:639px){
+ .variant-c[data-view=operation] .operation-content dl{grid-template-columns:minmax(0,1fr)}
+ .variant-c[data-view=operation] .operation-content dt{padding-bottom:0;border-bottom:0}
+}
+
+/* Operación: desistir se lee como enlace destructivo sobrio, sin competir con las acciones principales. */
+.variant-c [data-withdraw]{background:none!important;border:0!important;color:#8A2F1F!important;text-decoration:underline;text-underline-offset:4px;padding:0 4px;min-height:44px;font-weight:500}
+
+.variant-c[data-view=operation] .operation-content.operation-layout{max-width:none}
+.variant-c .operation-next{background:var(--paper);border:1px solid var(--line);border-top:2px solid var(--accent);padding:20px;margin-top:32px;min-width:0}
+.variant-c .operation-status{min-width:0}
+.variant-c .operation-next h2{font-family:Source Serif,Georgia,serif;font-size:26px;margin:0 0 12px}
+.variant-c .operation-next form{margin:16px 0}
+.variant-c .operation-next>.ui-actions{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px}
+.variant-c .operation-next dd{overflow-wrap:anywhere}
+.variant-c .operation-total{margin:24px 0 4px}
+.variant-c[data-view=operation] .operation-total strong{font-family:Source Serif,Georgia,serif;font-size:40px;font-weight:500;color:var(--ink)}
+.variant-c .operation-deadline{font-size:16px;color:var(--text);margin:0 0 8px}
+.variant-c .operation-sessions-title{font-family:Source Serif,Georgia,serif;font-size:22px;margin:32px 0 4px;padding-top:24px;border-top:1px solid var(--line)}
+.variant-c .operation-id{margin:24px 0 0;font-size:13px;color:var(--muted)}
+@media(min-width:1100px){
+ .variant-c .operation-layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:56px;align-items:start}
+ .variant-c .operation-next{position:sticky;top:24px;padding:32px;margin-top:0}
+}
+@media(max-width:600px){.variant-c .operation-next>.ui-actions .button,.variant-c .operation-next>.button,.variant-c .operation-next form .button,.variant-c .operation-next form button,.variant-c .operation-next form [type=submit]{width:100% !important;min-height:44px}}
+.variant-c .operation-next>p{margin:0 0 16px}

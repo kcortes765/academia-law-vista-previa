@@ -1,0 +1,23 @@
+/* inicio-2 · Cómo reservar en 3 pasos */
+
+.variant-c .booking-steps b{font-variant-numeric:lining-nums}
+
+/* Franja de pasos: título sobre descripción; en PC siguen tres columnas */
+.variant-c .booking-steps>span{display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.variant-c .booking-steps>span>b{display:block;font-size:15px}
+@media(max-width:639px){.variant-c .booking-steps{gap:16px}}
+
+.variant-c .booking-steps-band{background:var(--paper);padding:36px max(32px,calc((100vw - 1216px)/2)) 40px}
+.variant-c .booking-steps-band>.eyebrow{margin:0 0 20px}
+.variant-c .booking-steps-band .practice-strip{padding:0;background:transparent;border:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.variant-c .booking-steps-band .practice-strip>span[role=listitem]{padding:0 32px;border-left:1px solid var(--line);font-size:15px;line-height:1.55;color:var(--text);display:block}
+.variant-c .booking-steps-band .practice-strip>.journey-trace+span[role=listitem]{border-left:0;padding-left:0}
+.variant-c .booking-steps-band .practice-strip b{display:block;font-family:Source Serif,Georgia,serif;font-size:20px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.variant-c .booking-steps-band .practice-strip b::first-letter{font-size:34px;line-height:1;color:var(--accent);margin-right:2px}
+
+@media(max-width:639px){
+ .variant-c .booking-steps-band{padding:32px 22px}
+ .variant-c .booking-steps-band .practice-strip{grid-template-columns:1fr}
+ .variant-c .booking-steps-band .practice-strip>span[role=listitem]{border-left:0;border-top:1px solid var(--line);padding:16px 0}
+ .variant-c .booking-steps-band .practice-strip>.journey-trace+span[role=listitem]{border-top:0}
+}

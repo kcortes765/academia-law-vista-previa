@@ -1,0 +1,9 @@
+/* operacion-1 · Estado en grande */
+
+.variant-c[data-view=operation] .page-head>p:not(.eyebrow){display:flex;flex-direction:column;gap:6px;max-width:none}
+.variant-c .operation-state-label{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.variant-c .operation-state{font-family:Source Serif,Georgia,serif;font-size:26px;line-height:1.15;font-weight:500;color:var(--accent)}
+@media(min-width:1100px){
+ .variant-c .operation-state{font-size:30px}
+}
+@media(min-width:601px){.variant-c .operation-state{font-size:30px}}

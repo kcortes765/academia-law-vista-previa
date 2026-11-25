@@ -1,0 +1,17 @@
+/* cuenta-2 · Búsqueda compacta */
+
+/* Búsqueda discreta: una sola fila en PC (campo, estado y Buscar). */
+.variant-c form#history-search{display:grid;grid-template-columns:minmax(0,1fr) 220px auto;gap:12px;align-items:end;margin-bottom:8px}
+.variant-c form#history-search:not(:has(select)){grid-template-columns:minmax(0,1fr) auto}
+.variant-c form#history-search>label{margin:0}
+.variant-c form#history-search>.button{margin:0;justify-self:start}
+.variant-c form#history-search>.history-help{grid-column:1/-1;margin:0}
+.variant-c .history-help,
+.variant-c .history-count{font-size:14px;line-height:1.5;color:var(--muted);margin:6px 0 0}
+.variant-c .history-count{margin:14px 0 6px}
+
+@media(max-width:959px){
+ .variant-c form#history-search{grid-template-columns:minmax(0,1fr);gap:12px}
+ .variant-c form#history-search:not(:has(select)){grid-template-columns:minmax(0,1fr)}
+ .variant-c form#history-search>.button{justify-self:stretch;min-height:44px}
+}
