@@ -191,7 +191,8 @@ let entradas = [], cambio = null, seguirHasta = 0, irPendiente = null;
 const geo = { antes: null, despues: null }, escala = { antes: 1, despues: 1 }, listo = { antes: false, despues: false };
 
 const angosto = () => matchMedia('(max-width:820px)').matches;
-const principal = () => (modo === 'antes' ? 'antes' : 'despues');   // marco que guía el riel
+const efectivo = () => (modo === 'lado' && angosto() ? 'despues' : modo); // en pantallas angostas no hay lado a lado
+const principal = () => (efectivo() === 'antes' ? 'antes' : 'despues');   // marco que guía el riel
 const otro = (l) => (l === 'antes' ? 'despues' : 'antes');
 const selector = (e, lado) => (lado === 'antes' ? e.antes : e.despues);
 
@@ -214,7 +215,7 @@ function ajustar() {
   for (const lado of LADOS) {
     const f = marco[lado], l = f.parentElement, W = l.clientWidth, H = l.clientHeight;
     if (!W || !H) continue;
-    const pagina = angosto() ? W : ancho === 'movil' ? Math.min(390, W) : modo === 'lado' ? Math.max(W, 1180) : W;
+    const pagina = angosto() ? W : ancho === 'movil' ? Math.min(390, W) : efectivo() === 'lado' ? Math.max(W, 1180) : W;
     const k = Math.min(1, W / pagina);
     f.style.width = pagina + 'px';
     f.style.height = Math.ceil(H / k) + 'px';
@@ -256,7 +257,7 @@ function nota(e) {
 }
 function pintar() {
   const lado = principal(), g = geo[lado], k = escala[lado];
-  $('riel-titulo').textContent = modo === 'antes' ? 'Qué va a cambiar' : 'Qué cambió';
+  $('riel-titulo').textContent = efectivo() === 'antes' ? 'Qué va a cambiar' : 'Qué cambió';
   $('riel-cuenta').textContent = entradas.length ? entradas.length + (entradas.length === 1 ? ' cambio' : ' cambios') : '';
   const caja = $('notas'), H = caja.clientHeight, vivos = new Set();
   if (caja.offsetParent !== null) {
@@ -346,11 +347,11 @@ function guardarURL() {
   history.replaceState(null, '', u);
 }
 function pintarControles() {
-  for (const b of document.querySelectorAll('[data-modo-btn]')) b.setAttribute('aria-pressed', String(b.dataset.modoBtn === modo));
+  for (const b of document.querySelectorAll('[data-modo-btn]')) b.setAttribute('aria-pressed', String(b.dataset.modoBtn === efectivo()));
   for (const b of document.querySelectorAll('[data-ancho-btn]')) b.setAttribute('aria-pressed', String(b.dataset.anchoBtn === ancho));
   for (const b of $('pantallas').children) b.setAttribute('aria-current', String(b.dataset.id === pantalla));
   $('pantalla-sel').value = pantalla;
-  $('escena').dataset.modo = modo; $('escena').dataset.ancho = ancho;
+  $('escena').dataset.modo = efectivo(); $('escena').dataset.ancho = ancho;
 }
 function fijarModo(m) { if (!['antes', 'despues', 'lado'].includes(m) || (m === 'lado' && angosto())) return; modo = m; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); $('live').textContent = m === 'antes' ? 'Antes: sitio actual' : m === 'despues' ? 'Después: propuesta' : 'Lado a lado'; }
 function fijarAncho(a) { ancho = a === 'movil' ? 'movil' : 'pc'; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); }
@@ -401,10 +402,10 @@ document.addEventListener('keydown', (ev) => {
   if (ev.target.closest('select,input,textarea,dialog') || ev.ctrlKey || ev.metaKey || ev.altKey) return;
   const k = ev.key.toLowerCase();
   if (k === '1') fijarModo('antes'); else if (k === '2') fijarModo('despues'); else if (k === '3') fijarModo('lado');
-  else if (k === ' ' && !ev.target.closest('button,a,[role=button]')) { ev.preventDefault(); fijarModo(modo === 'antes' ? 'despues' : 'antes'); }
+  else if (k === ' ' && !ev.target.closest('button,a,[role=button]')) { ev.preventDefault(); fijarModo(efectivo() === 'antes' ? 'despues' : 'antes'); }
   else if (k === 'j' || k === 'arrowdown') { ev.preventDefault(); mover(1); } else if (k === 'k' || k === 'arrowup') { ev.preventDefault(); mover(-1); }
 });
-new ResizeObserver(() => { if (angosto() && modo === 'lado') { modo = 'despues'; pintarControles(); } ajustar(); }).observe($('escena'));
+new ResizeObserver(() => { if ($('escena').dataset.modo !== efectivo()) pintarControles(); ajustar(); }).observe($('escena'));
 
 (async () => {
   try { const r = await fetch('cambios.json', { cache: 'no-store' }); datos = await r.json(); } catch { datos = { pantallas: [], cambios: {} }; }
@@ -419,7 +420,6 @@ new ResizeObserver(() => { if (angosto() && modo === 'lado') { modo = 'despues';
     b.innerHTML = '<em></em><span></span>'; b.firstChild.textContent = e.codigo; b.lastChild.textContent = e.titulo + ' · ' + p.nombre; li.append(b); $('indice').append(li);
   }
   if (['antes', 'despues', 'lado'].includes(params.get('modo'))) modo = params.get('modo');
-  if (angosto() && modo === 'lado') modo = 'despues';
   if (params.get('ancho') === 'movil') ancho = 'movil';
   const inicial = datos.pantallas.some((p) => p.id === params.get('view')) ? params.get('view') : datos.pantallas[0]?.id;
   if (inicial) fijarPantalla(inicial, params.get('cambio'));
