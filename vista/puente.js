@@ -388,7 +388,7 @@ body>aside.local-status{display:none!important}
         if (r.height <= 0 && r.width <= 0) continue;
         b.push({ id: e.id, t: Math.round(r.top + scrollY), h: Math.round(r.height), v: n.hasAttribute('data-cmp-marcador') ? 1 : 0 });
       }
-      const msg = { type: 'academia-compare-geo', y: Math.round(scrollY), m: Math.round(maxScroll()), b };
+      const msg = { type: 'academia-compare-geo', y: Math.round(scrollY), m: Math.round(maxScroll()), u: lider() ? 1 : 0, b };
       const json = JSON.stringify(msg);
       if (json === geoEnviada) return;
       geoEnviada = json;
@@ -448,6 +448,7 @@ body>aside.local-status{display:none!important}
       enCola = false;
       parent.postMessage({
         type: 'academia-scroll',
+        u: lider() ? 1 : 0,
         y: Math.round(scrollY),
         ratio: ratio(),
         ancla: estado && estado.solo ? Object.assign(anclaActual() || { id: '', f: 0 }, { px: scrollY }) : null

@@ -188,6 +188,9 @@ const ICONO_COPIAR = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor"
 let datos = { pantallas: [], cambios: {} };
 let pantalla = 'home', modo = 'despues', ancho = 'pc';
 let entradas = [], cambio = null, seguirHasta = 0, irPendiente = null;
+const alturas = { antes: {}, despues: {} };   // alturas naturales de cada bloque, para alinear los dos lados
+let objetivo = null;   // { id, hasta, n }: cambio que debe quedar a la vista mientras la página termina de cargar o de alinearse
+const ultimoIr = { antes: 0, despues: 0 }, reintento = { antes: 0, despues: 0 };
 const geo = { antes: null, despues: null }, escala = { antes: 1, despues: 1 }, listo = { antes: false, despues: false };
 
 const angosto = () => matchMedia('(max-width:820px)').matches;
@@ -207,15 +210,17 @@ function urlSitio(lado) {
   return u.href;
 }
 const enviar = (lado, msg) => marco[lado].contentWindow?.postMessage(msg, location.origin);
-const estadoPara = (lado) => ({ type: 'academia-compare', cmd: 'estado', solo: false, vacio: '', foco: null, escala: escala[lado],
-  entradas: entradas.map((e, i) => ({ id: e.codigo, n: i + 1, titulo: e.titulo, sel: selector(e, lado) })) });
+const VACIO = { antes: 'No existe en el sitio actual', despues: 'No está en la propuesta' };
+// En lado a lado cada marco muestra solo los bloques con cambios, uno frente al otro y a la misma altura.
+const estadoPara = (lado) => ({ type: 'academia-compare', cmd: 'estado', solo: efectivo() === 'lado', vacio: VACIO[lado], foco: null, escala: escala[lado],
+  entradas: entradas.filter((e) => !(efectivo() === 'lado' && e.solo === 'movil' && ancho !== 'movil')).map((e, i) => ({ id: e.codigo, n: i + 1, titulo: e.titulo, sel: selector(e, lado) })) });
 
 /* Tamaño de cada marco: ancho real de página y escala para que quepa. */
 function ajustar() {
   for (const lado of LADOS) {
     const f = marco[lado], l = f.parentElement, W = l.clientWidth, H = l.clientHeight;
     if (!W || !H) continue;
-    const pagina = angosto() ? W : ancho === 'movil' ? Math.min(390, W) : efectivo() === 'lado' ? Math.max(W, 1180) : W;
+    const pagina = angosto() ? W : ancho === 'movil' ? Math.min(390, W) : efectivo() === 'lado' ? Math.max(W, 1024) : W;
     const k = Math.min(1, W / pagina);
     f.style.width = pagina + 'px';
     f.style.height = Math.ceil(H / k) + 'px';
@@ -317,7 +322,21 @@ function pintar() {
   $('prev').disabled = i <= 0; $('next').disabled = i < 0 || i >= entradas.length - 1;
 }
 
+function fijarObjetivo(id, ms) { objetivo = id ? { id, hasta: performance.now() + ms, n: { antes: 0, despues: 0 } } : null; }
+function mantenerObjetivo(lado) {
+  if (!objetivo) return;
+  const ahora = performance.now();
+  if (ahora > objetivo.hasta) { objetivo = null; return; }
+  const g = geo[lado], b = g && g.b.find((x) => x.id === objetivo.id);
+  if (!b) return;
+  const meta = clamp(b.t - 28, 0, g.m);
+  if (Math.abs(g.y - meta) <= 6 || objetivo.n[lado] >= 60) return;
+  if (ahora - ultimoIr[lado] < 300) { clearTimeout(reintento[lado]); reintento[lado] = setTimeout(() => mantenerObjetivo(lado), 320); return; }
+  ultimoIr[lado] = ahora; objetivo.n[lado]++;
+  enviar(lado, { type: 'academia-compare', cmd: 'ir', id: objetivo.id, f: 0, margen: 28 });
+}
 function seguir() {
+  if (objetivo && performance.now() < objetivo.hasta) return;
   const lado = principal(), g = geo[lado];
   if (!g || performance.now() < seguirHasta || !g.b.length) return;
   const ref = g.y + (marco[lado].parentElement.clientHeight / (escala[lado] || 1)) * 0.3;
@@ -328,7 +347,7 @@ function seguir() {
 }
 function elegir(id, anunciar = true) {
   const e = entradas.find((x) => x.codigo === id); if (!e) return;
-  cambio = id; seguirHasta = performance.now() + 1200;
+  cambio = id; seguirHasta = performance.now() + 1200; fijarObjetivo(id, 1500);
   for (const l of LADOS) enviar(l, { type: 'academia-compare', cmd: 'ir', id, f: 0, margen: 28 });
   guardarURL(); pintar();
   if (anunciar) $('live').textContent = 'Cambio ' + e.codigo + ': ' + e.titulo;
@@ -353,12 +372,18 @@ function pintarControles() {
   $('pantalla-sel').value = pantalla;
   $('escena').dataset.modo = efectivo(); $('escena').dataset.ancho = ancho;
 }
-function fijarModo(m) { if (!['antes', 'despues', 'lado'].includes(m) || (m === 'lado' && angosto())) return; modo = m; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); $('live').textContent = m === 'antes' ? 'Antes: sitio actual' : m === 'despues' ? 'Después: propuesta' : 'Lado a lado'; }
-function fijarAncho(a) { ancho = a === 'movil' ? 'movil' : 'pc'; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); }
+function reaplicar() {
+  alturas.antes = {}; alturas.despues = {}; fijarObjetivo(cambio, 5000);
+  for (const l of LADOS) enviar(l, estadoPara(l));
+  if (cambio) { const id = cambio; setTimeout(() => { for (const l of LADOS) enviar(l, { type: 'academia-compare', cmd: 'ir', id, f: 0, margen: 28 }); }, 500); }
+}
+function fijarModo(m) { if (!['antes', 'despues', 'lado'].includes(m) || (m === 'lado' && angosto())) return; const eraLado = efectivo() === 'lado'; modo = m; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); if ((efectivo() === 'lado') !== eraLado) reaplicar(); $('live').textContent = m === 'antes' ? 'Antes: sitio actual' : m === 'despues' ? 'Después: propuesta' : 'Lado a lado'; }
+function fijarAncho(a) { ancho = a === 'movil' ? 'movil' : 'pc'; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); if (efectivo() === 'lado') reaplicar(); }
 function fijarPantalla(p, foco) {
   if (!datos.pantallas.some((x) => x.id === p)) return;
   pantalla = p; entradas = datos.cambios[p] || []; cambio = foco && entradas.some((e) => e.codigo === foco) ? foco : entradas[0]?.codigo ?? null;
   irPendiente = foco && cambio === foco ? foco : null;
+  alturas.antes = {}; alturas.despues = {}; fijarObjetivo(irPendiente, 25000);
   for (const l of LADOS) { geo[l] = null; listo[l] = false; marco[l].src = urlSitio(l); $('abrir-' + l).href = urlSitio(l); }
   $('notas').replaceChildren(); pintarControles(); guardarURL(); ajustar();
 }
@@ -367,13 +392,23 @@ addEventListener('message', (ev) => {
   const lado = LADOS.find((l) => ev.source === marco[l].contentWindow);
   if (!lado || ev.origin !== location.origin) return;
   const d = ev.data; if (!d || typeof d !== 'object') return;
+  if ((d.type === 'academia-scroll' || d.type === 'academia-compare-geo') && d.u) objetivo = null;   // la persona ya se mueve: se suelta el cambio elegido
   if (d.type === 'academia-compare-ready') {
     listo[lado] = true; enviar(lado, estadoPara(lado));
-    if (irPendiente && listo.antes && listo.despues) { const id = irPendiente; irPendiente = null; setTimeout(() => elegir(id, false), 700); }
+    if (Object.keys(alturas[otro(lado)]).length) enviar(lado, { type: 'academia-compare', cmd: 'alturas', alturas: alturas[otro(lado)] });
+    if (irPendiente && listo.antes && listo.despues) { const id = irPendiente; irPendiente = null; setTimeout(() => { const o = objetivo; elegir(id, false); if (o && o.id === id) objetivo = o; }, 700); }
   } else if (d.type === 'academia-compare-geo' && Number.isFinite(d.y) && Array.isArray(d.b)) {
     geo[lado] = { y: d.y, m: Number.isFinite(d.m) ? d.m : 0, b: d.b.filter((x) => x && typeof x.id === 'string' && Number.isFinite(x.t) && Number.isFinite(x.h)).slice(0, 60) };
+    mantenerObjetivo(lado);
     if (lado === principal()) seguir();
     pintar();
+  } else if (d.type === 'academia-compare-heights' && d.heights && typeof d.heights === 'object') {
+    const limpio = {}; for (const [k, v] of Object.entries(d.heights).slice(0, 200)) if (Number.isFinite(v)) limpio[k] = v;
+    alturas[lado] = limpio; enviar(otro(lado), { type: 'academia-compare', cmd: 'alturas', alturas: limpio });
+  } else if (d.type === 'academia-scroll' && efectivo() === 'lado') {
+    // Lado a lado: las filas están alineadas, así que el otro marco va al mismo píxel.
+    const a = d.ancla && typeof d.ancla === 'object' ? { id: String(d.ancla.id || ''), f: Number(d.ancla.f) || 0, px: Number(d.ancla.px) } : null;
+    enviar(otro(lado), { type: 'academia-scroll-to', ratio: Number.isFinite(d.ratio) ? d.ratio : 0, ancla: a });
   } else if (d.type === 'academia-scroll' && Number.isFinite(d.y)) {
     // La persona mueve este marco: el otro lo acompaña bloque a bloque.
     if (geo[lado]) geo[lado].y = d.y;
@@ -405,7 +440,7 @@ document.addEventListener('keydown', (ev) => {
   else if (k === ' ' && !ev.target.closest('button,a,[role=button]')) { ev.preventDefault(); fijarModo(efectivo() === 'antes' ? 'despues' : 'antes'); }
   else if (k === 'j' || k === 'arrowdown') { ev.preventDefault(); mover(1); } else if (k === 'k' || k === 'arrowup') { ev.preventDefault(); mover(-1); }
 });
-new ResizeObserver(() => { if ($('escena').dataset.modo !== efectivo()) pintarControles(); ajustar(); }).observe($('escena'));
+new ResizeObserver(() => { if ($('escena').dataset.modo !== efectivo()) { const eraLado = $('escena').dataset.modo === 'lado'; pintarControles(); if ((efectivo() === 'lado') !== eraLado) reaplicar(); } ajustar(); }).observe($('escena'));
 
 (async () => {
   try { const r = await fetch('cambios.json', { cache: 'no-store' }); datos = await r.json(); } catch { datos = { pantallas: [], cambios: {} }; }
