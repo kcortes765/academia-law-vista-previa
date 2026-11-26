@@ -1,104 +1,429 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Academia Law · Propuesta de mejoras</title><style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}
-body{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr);background:#e9e8e4;color:#18324e;font:13px/1.4 system-ui,sans-serif}
-.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:7px 12px;background:#fff;border-bottom:1px solid #bdc4c8;position:relative;z-index:4}
-.brand{font:17px Georgia,serif;white-space:nowrap;margin-right:2px}
-.brand span{color:#8a5f37}
-label{display:flex;align-items:center;gap:5px;white-space:nowrap}
-select{max-width:200px;padding:4px 6px;border:1px solid #a7b2ba;border-radius:4px;background:#fff;color:inherit;font:inherit}
-.btn{padding:4px 10px;border:1px solid #a7b2ba;border-radius:4px;background:#fff;color:inherit;font:inherit;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn[aria-pressed="true"]{background:#9a6b3f;border-color:#9a6b3f;color:#fff}
-.btn.icono{width:28px;padding:4px 0;text-align:center}
-.grupo{display:flex;align-items:center;gap:4px}
-.derecha{margin-left:auto;display:flex;gap:6px;align-items:center}
-.cuenta{color:#52616d;font-size:12px;white-space:nowrap}
-.btn:focus-visible,select:focus-visible,.nota:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #805d3b;outline-offset:2px}
-.vista{display:grid;grid-template-columns:250px minmax(0,1fr);margin:6px;min-height:0;background:#fff;border:1px solid #b9c1c6}
-.vista.sin-marcas{grid-template-columns:0 minmax(0,1fr)}
-.vista.sin-marcas .margen{visibility:hidden}
-.margen{position:relative;overflow:hidden;background:#f7f6f2;border-right:1px solid #e2e0d9;min-height:0}
-.surface{position:relative;overflow:hidden;min-height:0;min-width:0;background:#eeede9}
-iframe{position:absolute;left:0;top:0;border:0;display:block;transform-origin:0 0;background:#fff}
-.tramo{position:absolute;right:0;width:4px;border-radius:2px 0 0 2px;background:#9a6b3f;opacity:.45;transition:opacity .15s}
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Academia Law · Propuesta de mejoras</title>
+<style>
+@font-face{font-family:"Source Serif";src:url("sitio/propuesta/visual/assets/fonts/source-serif-4.ttf") format("truetype");font-weight:200 900;font-display:swap}
+@font-face{font-family:"Source Sans";src:url("sitio/propuesta/visual/assets/fonts/source-sans-3.ttf") format("truetype");font-weight:200 900;font-display:swap}
+:root{--tinta:#16304f;--tinta-2:#4b5d70;--papel:#fbfaf5;--crema:#f3f0e7;--fondo:#e7e4da;--linea:#d3cfc2;--cobre:#8a5a33;--cobre-suave:#f1e6d8;--oro:#cdb38a;--sombra:0 1px 2px #16304f14,0 6px 18px #16304f12}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--fondo);color:var(--tinta);font:14px/1.45 "Source Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--cobre);outline-offset:2px}
+
+/* Barra superior */
+.barra{display:flex;align-items:center;gap:10px 18px;flex-wrap:wrap;padding:9px 16px;background:var(--tinta);color:#fff}
+.marca{display:flex;align-items:baseline;gap:10px;margin-right:4px;white-space:nowrap}
+.marca strong{font:500 20px/1 "Source Serif",Georgia,serif;letter-spacing:-.01em}
+.marca span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--oro)}
+.pantallas{display:flex;gap:2px;flex-wrap:wrap}
+.pantallas button{padding:6px 11px;border:0;border-bottom:2px solid transparent;background:none;color:#ffffffb8;white-space:nowrap}
+.pantallas button:hover{color:#fff}
+.pantallas button[aria-current="true"]{color:#fff;border-bottom-color:var(--oro);font-weight:600}
+#pantalla-sel{display:none;padding:7px 9px;border:1px solid #ffffff55;border-radius:3px;background:var(--tinta);color:#fff}
+.grupo{display:inline-flex;border:1px solid #ffffff59;border-radius:3px;overflow:hidden}
+.grupo button{padding:6px 13px;border:0;border-left:1px solid #ffffff38;background:none;color:#ffffffc7;white-space:nowrap}
+.grupo button:first-child{border-left:0}
+.grupo button[aria-pressed="true"]{background:var(--oro);color:var(--tinta);font-weight:650}
+.grupo.modo{margin-left:auto}
+.enlace{padding:6px 2px;border:0;background:none;color:#ffffffc7;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.enlace:hover{color:#fff}
+
+/* Zona central */
+.vista{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:0}
+.riel{position:relative;min-height:0;overflow:hidden;background:var(--crema);border-right:1px solid var(--linea)}
+.riel-cab{position:absolute;inset:0 0 auto 0;height:34px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 16px 0 18px;border-bottom:1px solid var(--linea);background:var(--crema);z-index:3;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.riel-cab b{font-weight:650;color:var(--tinta)}
+.notas{position:absolute;inset:34px 0 0 0;overflow:hidden}
+.tramo{position:absolute;right:0;width:3px;background:var(--cobre);opacity:.35;transition:opacity .15s}
 .tramo.activo{opacity:1}
-.nota{position:absolute;left:10px;right:14px;display:block;width:auto;padding:8px 10px 9px 36px;border:1px solid #e0d6ca;border-radius:6px;background:#fff;color:inherit;font:inherit;text-align:left;cursor:pointer;box-shadow:0 1px 2px #18324e0d;transition:border-color .15s,box-shadow .15s}
-.nota:hover,.nota.activa{border-color:#b48a60;box-shadow:0 3px 10px #18324e17}
-.nota .n{position:absolute;left:9px;top:8px;width:19px;height:19px;border-radius:50%;background:#f4e9dc;border:1px solid #b48a60;color:#7a5330;font:650 10.5px/17px system-ui,sans-serif;text-align:center;font-variant-numeric:tabular-nums}
-.nota.activa .n{background:#9a6b3f;border-color:#9a6b3f;color:#fff}
-.nota .cod{display:block;margin-bottom:1px;color:#8a5f37;font:600 10.5px/1.3 ui-monospace,Consolas,monospace;letter-spacing:.02em}
-.nota strong{display:block;font-size:12.5px;font-weight:650;line-height:1.3}
-.nota span{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px;color:#52616d;font-size:11.5px;line-height:1.38}
-.nota:hover span,.nota:focus-visible span{-webkit-line-clamp:unset;display:block}
-.nota:hover{z-index:2}
-.vacio{position:absolute;inset:auto 14px 14px 10px;color:#7b8790;font-size:12px}
-.live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-@media(max-width:820px){.vista{grid-template-columns:44px minmax(0,1fr)}.nota{left:6px;right:10px;padding:0;height:22px;width:22px;border:0;box-shadow:none;background:none}.nota strong,.nota span,.nota .cod{display:none!important}.nota .n{left:0;top:0}.toolbar{gap:5px 8px;padding:5px 8px}.brand{font-size:14px}select{max-width:130px}.cuenta{display:none}}
-</style></head><body>
-<header class="toolbar">
-<strong class="brand">Academia Law <span>· propuesta</span></strong>
-<label>Pantalla <select id="view"><option value="home">Inicio y servicios</option><option value="calendar">Reserva y horarios</option><option value="panel">Cuenta y sesiones</option><option value="operation">Operación pendiente</option><option value="admin">Admin · Hoy</option><option value="agenda">Admin · Agenda</option></select></label>
-<label>Ancho <select id="size"><option value="auto">Tu pantalla</option><option value="1280">PC · 1280 px</option><option value="768">Tablet · 768 px</option><option value="390">Móvil · 390 px</option></select></label>
-<button type="button" id="marcas" class="btn" aria-pressed="true" title="Mostrar u ocultar los indicadores (tecla M)">Indicadores</button>
-<div class="grupo" role="group" aria-label="Navegar entre cambios">
-<select id="cambio" aria-label="Cambio"></select>
-<button type="button" class="btn icono" id="prev" aria-label="Cambio anterior" title="Cambio anterior (tecla K)">↑</button>
-<button type="button" class="btn icono" id="next" aria-label="Cambio siguiente" title="Cambio siguiente (tecla J)">↓</button>
-</div>
-<button type="button" class="btn" id="copiar" title="Copia el código y el título del cambio seleccionado, para pedírselo a tu asistente">Copiar código</button>
-<span class="cuenta" id="cuenta"></span>
-<div class="derecha"><a class="btn" id="comparar" title="Ver junto al sitio actual">Comparar con el actual</a><a class="btn" id="abrir" target="_blank" rel="noopener" title="Abrir la propuesta sola, sin indicadores">Abrir ↗</a></div>
+.nota{position:absolute;left:14px;right:14px;display:block;padding:9px 30px 10px 12px;border:1px solid var(--linea);border-left:3px solid var(--oro);border-radius:2px;background:var(--papel);text-align:left;box-shadow:0 1px 1px #16304f0a;transition:border-color .15s,box-shadow .15s}
+.nota:hover{box-shadow:var(--sombra)}
+.nota.activa{border-left-color:var(--cobre);box-shadow:var(--sombra);z-index:2}
+.nota .cod{display:block;font:600 11px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.03em;color:var(--cobre)}
+.nota strong{display:block;margin-top:3px;font:600 14px/1.25 "Source Sans",system-ui,sans-serif}
+.nota .det{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-top:4px;font-size:12.5px;line-height:1.4;color:var(--tinta-2)}
+.nota.activa .det,.nota:hover .det{display:block}
+.nota .aviso{display:block;margin-top:5px;font-size:11.5px;font-style:italic;color:var(--cobre)}
+.nota .aviso[hidden]{display:none}
+.nota.sin-bloque{border-left-color:var(--linea);border-style:dashed;background:none;box-shadow:none}
+.copiar{position:absolute;top:6px;right:6px;width:24px;height:24px;display:grid;place-items:center;padding:0;border:0;border-radius:2px;background:none;color:var(--tinta-2);opacity:0;transition:opacity .15s}
+.nota:hover .copiar,.nota.activa .copiar,.copiar:focus-visible{opacity:1}
+.copiar:hover{background:var(--cobre-suave);color:var(--cobre)}
+.copiar svg{width:14px;height:14px}
+.vacio{position:absolute;left:18px;right:18px;top:18px;margin:0;font-size:13px;color:var(--tinta-2)}
+
+.escena{position:relative;min-width:0;min-height:0}
+.marco{position:absolute;inset:0;display:grid;grid-template-rows:34px minmax(0,1fr)}
+.rotulo{display:flex;align-items:center;gap:8px;margin:0;padding:0 14px;border-bottom:1px solid var(--linea);background:var(--crema);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap;overflow:hidden}
+.rotulo b{font-weight:650;color:var(--tinta)}
+.rotulo a{margin-left:auto;color:inherit;letter-spacing:.06em;text-underline-offset:3px}
+.marco[data-lado="despues"] .rotulo b{color:var(--cobre)}
+.lienzo{position:relative;overflow:hidden;min-height:0;background:var(--fondo)}
+.lienzo iframe{position:absolute;top:0;left:0;border:0;background:#fff;transform-origin:0 0}
+.escena[data-ancho="movil"] .lienzo iframe{box-shadow:0 0 0 1px var(--linea),var(--sombra)}
+.escena[data-modo="antes"] .marco[data-lado="despues"],.escena[data-modo="despues"] .marco[data-lado="antes"]{visibility:hidden;pointer-events:none}
+.escena[data-modo="lado"] .marco[data-lado="antes"]{right:auto;width:calc(50% - 1px);border-right:1px solid var(--linea)}
+.escena[data-modo="lado"] .marco[data-lado="despues"]{left:auto;width:50%}
+
+/* Marcas sobre el borde (pantallas angostas, sin riel) */
+.marcas{position:absolute;inset:0;pointer-events:none;display:none;overflow:hidden}
+.marcas .tramo{left:0;right:auto;opacity:.75}
+.punto{position:absolute;left:3px;min-width:19px;height:19px;padding:0 4px;border:0;border-radius:10px;background:var(--cobre);color:#fff;font:650 10.5px/19px "Source Sans",system-ui,sans-serif;text-align:center;pointer-events:auto;box-shadow:0 1px 3px #0003}
+.punto.activo{background:var(--tinta)}
+
+/* Barra inferior (pantallas angostas) */
+.pie{display:none;align-items:stretch;gap:0;background:var(--papel);border-top:1px solid var(--linea)}
+.pie button{border:0;background:none}
+.pie .paso{width:46px;font-size:20px;color:var(--tinta)}
+.pie .paso:disabled{opacity:.3}
+.pie .actual{flex:1;min-width:0;padding:8px 4px;text-align:left}
+.pie .actual em{display:block;font:600 11px/1.2 ui-monospace,Consolas,monospace;font-style:normal;color:var(--cobre)}
+.pie .actual strong{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+dialog{max-width:min(560px,calc(100vw - 28px));max-height:calc(100dvh - 28px);padding:0;border:0;border-top:3px solid var(--cobre);border-radius:2px;background:var(--papel);color:var(--tinta);box-shadow:0 18px 60px #0b1b2e55}
+dialog::backdrop{background:#0b1b2e73}
+.dlg{padding:22px 24px 20px;overflow:auto}
+.dlg h2{margin:0 0 10px;font:500 24px/1.15 "Source Serif",Georgia,serif;letter-spacing:-.01em}
+.dlg h3{margin:18px 0 6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.dlg p,.dlg li{font-size:14.5px;line-height:1.5}
+.dlg ol{margin:0;padding-left:20px}
+.dlg li{margin:5px 0}
+.dlg code{padding:1px 5px;border-radius:2px;background:var(--cobre-suave);font:600 12.5px ui-monospace,Consolas,monospace;color:var(--cobre)}
+.dlg .fino{font-size:12.5px;color:var(--tinta-2)}
+.indice{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.indice li{margin:0}
+.indice button{display:grid;grid-template-columns:96px 1fr;gap:10px;width:100%;padding:6px 8px;border:0;border-radius:2px;background:none;text-align:left}
+.indice button:hover{background:var(--cobre-suave)}
+.indice em{font:600 12px/1.5 ui-monospace,Consolas,monospace;font-style:normal;color:var(--cobre)}
+.dlg-pie{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.btn{padding:8px 16px;border:1px solid var(--tinta);border-radius:2px;background:var(--tinta);color:#fff;font-weight:600}
+.btn.sec{background:none;color:var(--tinta)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+
+@media(max-width:1180px){.pantallas{display:none}#pantalla-sel{display:block}}
+@media(max-width:820px){
+ .vista{grid-template-columns:minmax(0,1fr)}.riel{display:none}.marcas{display:block}.pie{display:flex}
+ .barra{gap:8px 10px;padding:8px 10px}.marca span,[data-solo="ancho"],[data-modo-btn="lado"]{display:none}.marca strong{font-size:17px}
+ .grupo.modo{margin-left:auto}.grupo button{padding:6px 11px}#pantalla-sel{max-width:44vw}
+ .marco{grid-template-rows:26px minmax(0,1fr)}.rotulo{font-size:10px;padding:0 10px}.rotulo a{display:none}
+}
+</style>
+</head>
+<body>
+<header class="barra">
+ <div class="marca"><strong>Academia Law</strong><span>Propuesta de mejoras</span></div>
+ <nav class="pantallas" id="pantallas" aria-label="Pantalla"></nav>
+ <select id="pantalla-sel" aria-label="Pantalla"></select>
+ <div class="grupo modo" role="group" aria-label="Versión">
+  <button type="button" data-modo-btn="antes" title="Sitio actual (tecla 1)">Antes</button>
+  <button type="button" data-modo-btn="despues" title="Propuesta (tecla 2)">Después</button>
+  <button type="button" data-modo-btn="lado" title="Las dos a la vez (tecla 3)">Lado a lado</button>
+ </div>
+ <div class="grupo" role="group" aria-label="Dispositivo" data-solo="ancho">
+  <button type="button" data-ancho-btn="pc">PC</button>
+  <button type="button" data-ancho-btn="movil">Móvil</button>
+ </div>
+ <button type="button" class="enlace" id="ayuda-btn">Cómo elegir</button>
 </header>
-<main class="vista" id="vista"><aside class="margen" id="margen" aria-label="Cambios de esta pantalla"></aside><div class="surface"><iframe id="frame" title="Academia Law · propuesta"></iframe></div></main>
-<div id="live" class="live" role="status" aria-live="polite"></div>
+
+<main class="vista">
+ <aside class="riel" aria-label="Cambios de esta pantalla">
+  <div class="riel-cab"><b id="riel-titulo">Qué cambia</b><span id="riel-cuenta"></span></div>
+  <div class="notas" id="notas"></div>
+ </aside>
+ <div class="escena" id="escena" data-modo="despues" data-ancho="pc">
+  <section class="marco" data-lado="antes" aria-label="Antes: sitio actual">
+   <p class="rotulo"><b>Antes</b> sitio actual <a id="abrir-antes" target="_blank" rel="noopener">Abrir sola ↗</a></p>
+   <div class="lienzo"><iframe id="f-antes" title="Sitio actual"></iframe><div class="marcas" data-marcas="antes"></div></div>
+  </section>
+  <section class="marco" data-lado="despues" aria-label="Después: propuesta">
+   <p class="rotulo"><b>Después</b> propuesta <a id="abrir-despues" target="_blank" rel="noopener">Abrir sola ↗</a></p>
+   <div class="lienzo"><iframe id="f-despues" title="Propuesta"></iframe><div class="marcas" data-marcas="despues"></div></div>
+  </section>
+ </div>
+</main>
+
+<footer class="pie">
+ <button type="button" class="paso" id="prev" aria-label="Cambio anterior">‹</button>
+ <button type="button" class="actual" id="actual" aria-haspopup="dialog"><em id="actual-cod"></em><strong id="actual-tit"></strong></button>
+ <button type="button" class="paso" id="next" aria-label="Cambio siguiente">›</button>
+</footer>
+
+<dialog id="ayuda" aria-labelledby="ayuda-t"><div class="dlg">
+ <h2 id="ayuda-t">Cómo elegir qué adoptar</h2>
+ <ol>
+  <li>Recorre cada pantalla. Los bloques marcados al margen son los que cambian; cada uno tiene un <strong>código</strong>, por ejemplo <code>inicio-3</code>.</li>
+  <li>Alterna <strong>Antes</strong> y <strong>Después</strong> para compararlo con el sitio de hoy.</li>
+  <li>Dile a tu asistente de IA qué códigos no quieres: «apaga <code>inicio-3</code> y <code>cuenta-5</code>». Cada código es una línea en <code>plataforma/public/visual/mejoras.js</code>; borrarla devuelve esa parte a como está hoy.</li>
+ </ol>
+ <p class="fino">El resto de la guía para el asistente está en <code>plataforma/PROPUESTA.md</code>, dentro del pull request. Esta vista usa datos ficticios y no guarda nada.</p>
+ <h3>Todos los cambios</h3>
+ <ul class="indice" id="indice"></ul>
+ <div class="dlg-pie"><form method="dialog"><button class="btn">Entendido</button></form></div>
+</div></dialog>
+
+<dialog id="hoja" aria-labelledby="hoja-t"><div class="dlg">
+ <p class="fino" style="margin:0"><code id="hoja-cod"></code></p>
+ <h2 id="hoja-t" style="margin-top:8px"></h2>
+ <p id="hoja-det"></p>
+ <div class="dlg-pie"><button type="button" class="btn sec" id="hoja-copiar">Copiar código</button><form method="dialog"><button class="btn">Cerrar</button></form></div>
+</div></dialog>
+<div id="live" class="sr" role="status" aria-live="polite"></div>
+
 <script>
-const $=id=>document.getElementById(id),params=new URLSearchParams(location.search),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const VISTAS=['home','calendar','panel','operation','admin','agenda'];
-const MODULOS=[
- {id:'inicio',nombre:'Inicio',desc:'Portada con credenciales, cómo reservar, precios antes, sobre mí y qué pasa en una sesión.'},
- {id:'acabado',nombre:'Acabado general',desc:'Cabeceras sin numeración técnica y pie de página ordenado.'},
- {id:'reserva',nombre:'Reserva',desc:'Pasos de la reserva, día y hora en hora de Chile, resumen claro.'},
- {id:'cuenta',nombre:'Cuenta del alumno',desc:'Próxima sesión destacada, búsqueda compacta, tarjetas con una acción principal.'},
- {id:'operacion',nombre:'Operación',desc:'Estado en grande y operación a dos columnas.'},
- {id:'admin-hoy',nombre:'Admin · Hoy',desc:'Pestañas Hoy | Agenda y tablero del día.'},
- {id:'admin-agenda',nombre:'Admin · Agenda',desc:'Sesiones del período en filas y la semana en una mirada.'}];
-let manifiesto={},entradas=[],cambioId=null,escala=1,geo=null,seguirHasta=0;
-if(VISTAS.includes(params.get('view')))$('view').value=params.get('view');
-$('size').value='auto';if(['auto','390','768','1280'].includes(params.get('size')))$('size').value=params.get('size');
-const activos=new Set(MODULOS.map(m=>m.id));
-let marcasOn=params.get('marcas')!=='0';
-try{if(!params.has('marcas')&&localStorage.getItem('al-marcas')==='0')marcasOn=false;}catch{}
-const mejorasParam=()=>null;
-function url(){const v=$('view').value,admin=v==='admin'||v==='agenda',u=new URL('sitio/propuesta/index.html',location.href);u.searchParams.set('view',admin?'admin':v);u.searchParams.set('escenario',admin?'admin':'student');if(v==='agenda')u.searchParams.set('cmp','agenda');if(v==='operation')u.searchParams.set('operation','op-fixture-c');return u.href;}
-function enviar(msg){$('frame').contentWindow?.postMessage(msg,location.origin);}
-function estado(){return{type:'academia-compare',cmd:'estado',solo:false,vacio:'',entradas:entradas.map((e,i)=>({id:e.id,n:i+1,titulo:e.titulo,sel:e.propuesta})),foco:null,escala};}
-function fit(){const f=$('frame'),s=f.parentElement,w=$('size').value==='auto'?s.clientWidth:Number($('size').value),k=Math.min(1,s.clientWidth/w);if(!k||!w)return;f.style.left=Math.max(0,Math.round((s.clientWidth-w*k)/2))+'px';f.style.width=w+'px';f.style.height=Math.max(1,s.clientHeight/k)+'px';f.style.transform='scale('+k+')';if(Math.abs(k-escala)>0.0005){escala=k;enviar({type:'academia-compare',cmd:'escala',escala:k});}pintar();}
-async function cargarManifiesto(){if(Object.keys(manifiesto).length)return;try{const r=await fetch('cambios.json',{cache:'no-store'});manifiesto=r.ok?await r.json():{};}catch{manifiesto={};}}
-function leerEntradas(){const l=Array.isArray(manifiesto[$('view').value])?manifiesto[$('view').value]:[];return l.filter(e=>e&&typeof e.id==='string'&&typeof e.propuesta==='string'&&activos.has(e.modulo)).map(e=>({id:e.id,codigo:e.codigo||e.id,titulo:e.titulo,detalle:e.detalle||'',propuesta:e.propuesta,modulo:e.modulo}));}
-function actualizarURL(){const u=new URL(location.href);u.searchParams.set('view',$('view').value);u.searchParams.set('size',$('size').value);const m=mejorasParam();if(m)u.searchParams.set('mejoras',m);else u.searchParams.delete('mejoras');if(marcasOn)u.searchParams.delete('marcas');else u.searchParams.set('marcas','0');if(cambioId)u.searchParams.set('cambio',cambioId);else u.searchParams.delete('cambio');history.replaceState(null,'',u);const c=new URL('comparar.html',location.href);c.searchParams.set('view',$('view').value);c.searchParams.set('size',$('size').value);if(m)c.searchParams.set('mejoras',m);if(cambioId)c.searchParams.set('cambio',cambioId);$('comparar').href=c.href;}
-function pintarNav(){const sel=$('cambio'),hay=entradas.length>0;sel.replaceChildren();if(!hay)sel.append(new Option('Sin cambios',''));else entradas.forEach(e=>sel.append(new Option(e.codigo+' · '+e.titulo,e.id)));sel.disabled=!hay;if(hay&&cambioId)sel.value=cambioId;const i=entradas.findIndex(e=>e.id===cambioId);$('prev').disabled=!hay||i<=0;$('next').disabled=!hay||i>=entradas.length-1;$('cuenta').textContent=hay?entradas.length+(entradas.length===1?' cambio':' cambios')+' en esta pantalla · para pedir algo, nombra su código':'Sin cambios en esta pantalla';$('copiar').disabled=!hay;}
-function pintarMarcas(){$('marcas').setAttribute('aria-pressed',String(marcasOn));$('vista').classList.toggle('sin-marcas',!marcasOn);}
-function pintar(){const m=$('margen');if(!marcasOn)return;const H=m.clientHeight,vivos=new Set();let piso=-1e9;const bloques=geo?geo.b.map(b=>({b,i:entradas.findIndex(e=>e.id===b.id)})).filter(x=>x.i>=0).sort((a,b)=>a.b.t-b.b.t):[];for(const {b,i} of bloques){const top=(b.t-geo.y)*escala,alto=Math.max(8,b.h*escala),e=entradas[i];if(!(top<H&&top+alto>0))continue;let tr=m.querySelector('.tramo[data-id="'+CSS.escape(b.id)+'"]'),no=m.querySelector('.nota[data-id="'+CSS.escape(b.id)+'"]');if(!tr){tr=document.createElement('div');tr.className='tramo';tr.dataset.id=b.id;m.append(tr);}if(!no){no=document.createElement('button');no.type='button';no.className='nota';no.dataset.id=b.id;const n=document.createElement('span'),c=document.createElement('em'),s=document.createElement('strong'),d=document.createElement('span');n.className='n';c.className='cod';no.append(n,c,s,d);m.append(no);}vivos.add(tr);vivos.add(no);no.querySelector('.n').textContent=i+1;no.querySelector('.cod').textContent=e.codigo;no.querySelector('strong').textContent=e.titulo;no.lastElementChild.textContent=e.detalle;no.setAttribute('aria-label','Cambio '+e.codigo+': '+e.titulo+'. '+e.detalle);const act=b.id===cambioId;tr.classList.toggle('activo',act);no.classList.toggle('activa',act);tr.style.top=top+'px';tr.style.height=alto+'px';const hNota=no.offsetHeight||40;let y=clamp(top,8,Math.max(8,top+alto-hNota));y=Math.min(y,H-hNota-8);y=Math.max(y,piso+6);no.style.top=y+'px';piso=y+hNota;}for(const n of Array.from(m.children))if(!vivos.has(n))n.remove();if(!m.children.length){const v=document.createElement('p');v.className='vacio';v.textContent=!entradas.length?(activos.size?'Esta pantalla no tiene cambios en los módulos marcados.':'Estás viendo el sitio actual: marca módulos para ver las mejoras.'):geo?'Ningún cambio a la vista: baja o usa ↓ para ir al siguiente.':'Cargando…';m.append(v);}}
-function seguir(){if(!geo||performance.now()<seguirHasta||!geo.b.length)return;const ref=geo.y+($('margen').clientHeight/escala)*0.3;let mejor=null;for(const b of geo.b)if(b.t<=ref&&(!mejor||b.t>=mejor.t))mejor=b;if(!mejor)mejor=geo.b.reduce((a,b)=>b.t<a.t?b:a);if(mejor.id!==cambioId&&entradas.some(e=>e.id===mejor.id)){cambioId=mejor.id;pintarNav();actualizarURL();}}
-function elegir(id){if(!entradas.some(e=>e.id===id))return;cambioId=id;seguirHasta=performance.now()+1200;pintarNav();actualizarURL();enviar({type:'academia-compare',cmd:'ir',id,f:0,margen:24});const i=entradas.findIndex(e=>e.id===id);$('live').textContent='Cambio '+entradas[i].codigo+': '+entradas[i].titulo;}
-function mover(d){if(!entradas.length)return;const i=entradas.findIndex(e=>e.id===cambioId),n=entradas[clamp(i+d,0,entradas.length-1)];if(n&&n.id!==cambioId)elegir(n.id);}
-function alternarMarcas(){marcasOn=!marcasOn;try{localStorage.setItem('al-marcas',marcasOn?'1':'0');}catch{}pintarMarcas();actualizarURL();requestAnimationFrame(fit);$('live').textContent=marcasOn?'Indicadores visibles':'Indicadores ocultos';}
-let focoInicial=params.get('cambio'),irPendiente=null;
-async function actualizar(){await cargarManifiesto();entradas=leerEntradas();geo=null;cambioId=focoInicial&&entradas.some(e=>e.id===focoInicial)?focoInicial:entradas[0]?.id??null;irPendiente=focoInicial&&cambioId===focoInicial?cambioId:null;focoInicial=null;const u=url();$('frame').src=u;$('abrir').href=u;pintarNav();actualizarURL();$('margen').replaceChildren();pintar();fit();}
-addEventListener('message',ev=>{if(ev.source!==$('frame').contentWindow||ev.origin!==location.origin)return;const d=ev.data;if(!d||typeof d!=='object')return;
-if(d.type==='academia-compare-ready'){enviar(estado());enviar({type:'academia-compare',cmd:'escala',escala});if(irPendiente){const id=irPendiente;irPendiente=null;setTimeout(()=>elegir(id),600);}return;}
-if(d.type==='academia-compare-geo'&&Number.isFinite(d.y)&&Array.isArray(d.b)){geo={y:d.y,b:d.b.filter(x=>x&&typeof x.id==='string'&&Number.isFinite(x.t)&&Number.isFinite(x.h)).slice(0,60)};seguir();pintar();}});
-$('view').addEventListener('change',actualizar);
-$('size').addEventListener('change',()=>{fit();actualizarURL();});
-$('cambio').addEventListener('change',e=>elegir(e.target.value));
-$('prev').addEventListener('click',()=>mover(-1));
-$('next').addEventListener('click',()=>mover(1));
-$('marcas').addEventListener('click',alternarMarcas);
-$('copiar').addEventListener('click',async()=>{const e=entradas.find(x=>x.id===cambioId);if(!e)return;const texto=e.codigo+' · '+e.titulo;try{await navigator.clipboard.writeText(texto);$('copiar').textContent='Copiado ✓';}catch{$('live').textContent=texto;$('copiar').textContent=texto;}setTimeout(()=>{$('copiar').textContent='Copiar código';},1800);});
-$('margen').addEventListener('click',e=>{const n=e.target.closest('.nota');if(n)elegir(n.dataset.id);});
-$('margen').addEventListener('wheel',e=>enviar({type:'academia-compare',cmd:'rueda',dy:e.deltaY/(escala||1)}),{passive:true});
-document.addEventListener('keydown',e=>{if(e.target.closest('select,input,textarea')||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='m')alternarMarcas();else if(k==='j')mover(1);else if(k==='k')mover(-1);});
-new ResizeObserver(fit).observe($('vista'));
-pintarMarcas();actualizar();
-</script></body></html>
+'use strict';
+const $ = (id) => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const params = new URLSearchParams(location.search);
+const LADOS = ['antes', 'despues'];
+const marco = { antes: $('f-antes'), despues: $('f-despues') };
+const ICONO_COPIAR = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg>';
+
+let datos = { pantallas: [], cambios: {} };
+let pantalla = 'home', modo = 'despues', ancho = 'pc';
+let entradas = [], cambio = null, seguirHasta = 0, irPendiente = null;
+const geo = { antes: null, despues: null }, escala = { antes: 1, despues: 1 }, listo = { antes: false, despues: false };
+
+const angosto = () => matchMedia('(max-width:820px)').matches;
+const efectivo = () => (modo === 'lado' && angosto() ? 'despues' : modo); // en pantallas angostas no hay lado a lado
+const principal = () => (efectivo() === 'antes' ? 'antes' : 'despues');   // marco que guía el riel
+const otro = (l) => (l === 'antes' ? 'despues' : 'antes');
+const selector = (e, lado) => (lado === 'antes' ? e.antes : e.despues);
+
+function urlSitio(lado) {
+  const admin = pantalla === 'admin' || pantalla === 'agenda';
+  const u = new URL('sitio/' + (lado === 'antes' ? 'original' : 'propuesta') + '/index.html', location.href);
+  u.searchParams.set('view', admin ? 'admin' : pantalla);
+  u.searchParams.set('escenario', admin ? 'admin' : 'student');
+  if (pantalla === 'agenda') u.searchParams.set('cmp', 'agenda');
+  if (pantalla === 'operation') u.searchParams.set('operation', 'op-fixture-c');
+  if (lado === 'despues' && params.get('mejoras')) u.searchParams.set('mejoras', params.get('mejoras'));
+  return u.href;
+}
+const enviar = (lado, msg) => marco[lado].contentWindow?.postMessage(msg, location.origin);
+const estadoPara = (lado) => ({ type: 'academia-compare', cmd: 'estado', solo: false, vacio: '', foco: null, escala: escala[lado],
+  entradas: entradas.map((e, i) => ({ id: e.codigo, n: i + 1, titulo: e.titulo, sel: selector(e, lado) })) });
+
+/* Tamaño de cada marco: ancho real de página y escala para que quepa. */
+function ajustar() {
+  for (const lado of LADOS) {
+    const f = marco[lado], l = f.parentElement, W = l.clientWidth, H = l.clientHeight;
+    if (!W || !H) continue;
+    const pagina = angosto() ? W : ancho === 'movil' ? Math.min(390, W) : efectivo() === 'lado' ? Math.max(W, 1180) : W;
+    const k = Math.min(1, W / pagina);
+    f.style.width = pagina + 'px';
+    f.style.height = Math.ceil(H / k) + 'px';
+    f.style.left = Math.max(0, Math.round((W - pagina * k) / 2)) + 'px';
+    f.style.transform = k === 1 ? 'none' : 'scale(' + k + ')';
+    if (Math.abs(k - escala[lado]) > 0.0005) { escala[lado] = k; enviar(lado, { type: 'academia-compare', cmd: 'escala', escala: k }); }
+  }
+  pintar();
+}
+
+/* Correspondencia de posición entre los dos sitios, anclada en los bloques con cambios. */
+function mapear(desde, hacia, y) {
+  const gX = geo[desde], gO = geo[hacia];
+  if (!gX || !gO) return null;
+  const alto = marco[desde].parentElement.clientHeight / (escala[desde] || 1), ref = y + alto * 0.3;
+  const o = new Map(gO.b.map((b) => [b.id, b]));
+  const bx = gX.b.filter((b) => o.has(b.id) && b.h > 0).sort((a, b) => a.t - b.t);
+  if (!bx.length) return gX.m > 0 ? (y / gX.m) * gO.m : 0;
+  let dentro = null;
+  for (const b of bx) if (ref >= b.t && ref < b.t + b.h && (!dentro || b.h < dentro.h)) dentro = b;
+  let refO;
+  if (dentro) { const q = o.get(dentro.id); refO = q.t + ((ref - dentro.t) / dentro.h) * q.h; }
+  else {
+    const prev = bx.filter((b) => b.t + b.h <= ref).at(-1), next = bx.find((b) => b.t > ref);
+    if (!prev) { const q = o.get(next.id); refO = next.t > 0 ? (ref / next.t) * q.t : 0; }
+    else if (!next) { const q = o.get(prev.id); refO = q.t + q.h + (ref - prev.t - prev.h); }
+    else { const p = o.get(prev.id), q = o.get(next.id), a = prev.t + prev.h, b = next.t, oa = p.t + p.h, ob = q.t; refO = ob >= oa && b > a ? oa + ((ref - a) / (b - a)) * (ob - oa) : oa + (ref - a); }
+  }
+  return clamp(Math.round(refO - alto * 0.3), 0, gO.m);
+}
+
+/* Riel de notas (pantallas anchas) y marcas sobre el borde (angostas). */
+function nota(e) {
+  const n = document.createElement('div'); n.className = 'nota'; n.dataset.id = e.codigo; n.tabIndex = 0; n.setAttribute('role', 'button');
+  n.innerHTML = '<span class="cod"></span><strong></strong><span class="det"></span><span class="aviso" hidden></span><button type="button" class="copiar" title="Copiar código">' + ICONO_COPIAR + '<span class="sr">Copiar código</span></button>';
+  n.querySelector('.cod').textContent = e.codigo; n.querySelector('strong').textContent = e.titulo; n.querySelector('.det').textContent = e.detalle;
+  n.setAttribute('aria-label', e.codigo + ': ' + e.titulo + '. ' + e.detalle);
+  return n;
+}
+function pintar() {
+  const lado = principal(), g = geo[lado], k = escala[lado];
+  $('riel-titulo').textContent = efectivo() === 'antes' ? 'Qué va a cambiar' : 'Qué cambió';
+  $('riel-cuenta').textContent = entradas.length ? entradas.length + (entradas.length === 1 ? ' cambio' : ' cambios') : '';
+  const caja = $('notas'), H = caja.clientHeight, vivos = new Set();
+  if (caja.offsetParent !== null) {
+    const bloques = new Map((g ? g.b : []).map((b) => [b.id, b]));
+    let piso = 0;
+    const sueltas = [];
+    for (const e of entradas) {
+      const b = bloques.get(e.codigo);
+      if (!b) { if (g) sueltas.push(e); continue; }
+      const top = (b.t - g.y) * k, alto = Math.max(6, b.h * k);
+      if (!(top < H && top + alto > 0)) continue;
+      let tr = caja.querySelector('.tramo[data-id="' + e.codigo + '"]'), no = caja.querySelector('.nota[data-id="' + e.codigo + '"]');
+      if (!tr) { tr = document.createElement('div'); tr.className = 'tramo'; tr.dataset.id = e.codigo; caja.append(tr); }
+      if (!no) { no = nota(e); caja.append(no); }
+      vivos.add(tr); vivos.add(no);
+      no.classList.remove('sin-bloque'); no.querySelector('.aviso').hidden = true;
+      const act = e.codigo === cambio; tr.classList.toggle('activo', act); no.classList.toggle('activa', act);
+      tr.style.top = top + 'px'; tr.style.height = alto + 'px';
+      const h = no.offsetHeight || 60;
+      let y = clamp(top, 10, Math.max(10, top + alto - h));
+      y = Math.max(Math.min(y, H - h - 10), piso + 8);
+      no.style.top = y + 'px'; piso = y + h;
+    }
+    // Cambios sin bloque en esta versión o ancho: se listan al final, sin tramo.
+    let fondo = H - 10;
+    for (const e of sueltas.reverse()) {
+      let no = caja.querySelector('.nota[data-id="' + e.codigo + '"]');
+      if (!no) { no = nota(e); caja.append(no); }
+      vivos.add(no); no.classList.add('sin-bloque'); no.classList.toggle('activa', e.codigo === cambio);
+      const av = no.querySelector('.aviso'); av.hidden = false;
+      av.textContent = selector(e, lado) === null ? 'Es nuevo: no existe en el sitio actual.' : e.solo === 'movil' ? 'Solo se ve en móvil: cambia a «Móvil».' : 'No está a la vista en esta versión.';
+      const h = no.offsetHeight || 70; fondo -= h; if (fondo < piso + 8) { no.remove(); vivos.delete(no); fondo += h; continue; }
+      no.style.top = fondo + 'px'; fondo -= 8;
+    }
+    for (const n of Array.from(caja.children)) if (!vivos.has(n)) n.remove();
+    if (!caja.children.length) { const p = document.createElement('p'); p.className = 'vacio'; p.textContent = !g ? 'Cargando…' : entradas.length ? 'Ningún cambio a la vista aquí: sigue bajando.' : 'Esta pantalla no tiene cambios.'; caja.append(p); }
+  }
+  for (const l of LADOS) {
+    const capa = document.querySelector('[data-marcas="' + l + '"]'), gl = geo[l], kl = escala[l], Hl = capa.clientHeight, x0 = parseFloat(marco[l].style.left) || 0;
+    const usados = new Set();
+    if (capa.offsetParent !== null && gl) entradas.forEach((e, i) => {
+      const b = gl.b.find((x) => x.id === e.codigo); if (!b) return;
+      const top = (b.t - gl.y) * kl, alto = Math.max(6, b.h * kl); if (!(top < Hl && top + alto > 0)) return;
+      let tr = capa.querySelector('.tramo[data-id="' + e.codigo + '"]'), pt = capa.querySelector('.punto[data-id="' + e.codigo + '"]');
+      if (!tr) { tr = document.createElement('div'); tr.className = 'tramo'; tr.dataset.id = e.codigo; capa.append(tr); }
+      if (!pt) { pt = document.createElement('button'); pt.type = 'button'; pt.className = 'punto'; pt.dataset.id = e.codigo; pt.textContent = i + 1; pt.setAttribute('aria-label', 'Cambio ' + e.codigo + ': ' + e.titulo); capa.append(pt); }
+      usados.add(tr); usados.add(pt);
+      tr.style.left = x0 + 'px'; tr.style.top = top + 'px'; tr.style.height = alto + 'px';
+      pt.style.left = x0 + 3 + 'px'; pt.style.top = clamp(top + 4, 4, Math.max(4, top + alto - 23)) + 'px';
+      pt.classList.toggle('activo', e.codigo === cambio);
+    });
+    for (const n of Array.from(capa.children)) if (!usados.has(n)) n.remove();
+  }
+  const i = entradas.findIndex((e) => e.codigo === cambio), e = entradas[i];
+  $('actual-cod').textContent = e ? e.codigo + ' · ' + (i + 1) + ' de ' + entradas.length : '';
+  $('actual-tit').textContent = e ? e.titulo : 'Sin cambios en esta pantalla';
+  $('prev').disabled = i <= 0; $('next').disabled = i < 0 || i >= entradas.length - 1;
+}
+
+function seguir() {
+  const lado = principal(), g = geo[lado];
+  if (!g || performance.now() < seguirHasta || !g.b.length) return;
+  const ref = g.y + (marco[lado].parentElement.clientHeight / (escala[lado] || 1)) * 0.3;
+  let mejor = null;
+  for (const b of g.b) if (b.t <= ref && (!mejor || b.t >= mejor.t)) mejor = b;
+  if (!mejor) mejor = g.b.reduce((a, b) => (b.t < a.t ? b : a));
+  if (mejor.id !== cambio && entradas.some((e) => e.codigo === mejor.id)) { cambio = mejor.id; guardarURL(); }
+}
+function elegir(id, anunciar = true) {
+  const e = entradas.find((x) => x.codigo === id); if (!e) return;
+  cambio = id; seguirHasta = performance.now() + 1200;
+  for (const l of LADOS) enviar(l, { type: 'academia-compare', cmd: 'ir', id, f: 0, margen: 28 });
+  guardarURL(); pintar();
+  if (anunciar) $('live').textContent = 'Cambio ' + e.codigo + ': ' + e.titulo;
+}
+function mover(d) { const i = entradas.findIndex((e) => e.codigo === cambio), n = entradas[clamp(i + d, 0, entradas.length - 1)]; if (n && n.codigo !== cambio) elegir(n.codigo); }
+async function copiar(codigo, boton) {
+  try { await navigator.clipboard.writeText(codigo); $('live').textContent = 'Código ' + codigo + ' copiado'; if (boton) { boton.dataset.t = boton.textContent; boton.textContent = 'Copiado ✓'; setTimeout(() => { boton.textContent = boton.dataset.t; }, 1500); } }
+  catch { $('live').textContent = codigo; }
+}
+
+function guardarURL() {
+  const u = new URL(location.href);
+  u.searchParams.set('view', pantalla); u.searchParams.set('modo', modo);
+  if (ancho === 'movil') u.searchParams.set('ancho', 'movil'); else u.searchParams.delete('ancho');
+  if (cambio) u.searchParams.set('cambio', cambio); else u.searchParams.delete('cambio');
+  history.replaceState(null, '', u);
+}
+function pintarControles() {
+  for (const b of document.querySelectorAll('[data-modo-btn]')) b.setAttribute('aria-pressed', String(b.dataset.modoBtn === efectivo()));
+  for (const b of document.querySelectorAll('[data-ancho-btn]')) b.setAttribute('aria-pressed', String(b.dataset.anchoBtn === ancho));
+  for (const b of $('pantallas').children) b.setAttribute('aria-current', String(b.dataset.id === pantalla));
+  $('pantalla-sel').value = pantalla;
+  $('escena').dataset.modo = efectivo(); $('escena').dataset.ancho = ancho;
+}
+function fijarModo(m) { if (!['antes', 'despues', 'lado'].includes(m) || (m === 'lado' && angosto())) return; modo = m; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); $('live').textContent = m === 'antes' ? 'Antes: sitio actual' : m === 'despues' ? 'Después: propuesta' : 'Lado a lado'; }
+function fijarAncho(a) { ancho = a === 'movil' ? 'movil' : 'pc'; pintarControles(); guardarURL(); requestAnimationFrame(ajustar); }
+function fijarPantalla(p, foco) {
+  if (!datos.pantallas.some((x) => x.id === p)) return;
+  pantalla = p; entradas = datos.cambios[p] || []; cambio = foco && entradas.some((e) => e.codigo === foco) ? foco : entradas[0]?.codigo ?? null;
+  irPendiente = foco && cambio === foco ? foco : null;
+  for (const l of LADOS) { geo[l] = null; listo[l] = false; marco[l].src = urlSitio(l); $('abrir-' + l).href = urlSitio(l); }
+  $('notas').replaceChildren(); pintarControles(); guardarURL(); ajustar();
+}
+
+addEventListener('message', (ev) => {
+  const lado = LADOS.find((l) => ev.source === marco[l].contentWindow);
+  if (!lado || ev.origin !== location.origin) return;
+  const d = ev.data; if (!d || typeof d !== 'object') return;
+  if (d.type === 'academia-compare-ready') {
+    listo[lado] = true; enviar(lado, estadoPara(lado));
+    if (irPendiente && listo.antes && listo.despues) { const id = irPendiente; irPendiente = null; setTimeout(() => elegir(id, false), 700); }
+  } else if (d.type === 'academia-compare-geo' && Number.isFinite(d.y) && Array.isArray(d.b)) {
+    geo[lado] = { y: d.y, m: Number.isFinite(d.m) ? d.m : 0, b: d.b.filter((x) => x && typeof x.id === 'string' && Number.isFinite(x.t) && Number.isFinite(x.h)).slice(0, 60) };
+    if (lado === principal()) seguir();
+    pintar();
+  } else if (d.type === 'academia-scroll' && Number.isFinite(d.y)) {
+    // La persona mueve este marco: el otro lo acompaña bloque a bloque.
+    if (geo[lado]) geo[lado].y = d.y;
+    const y = mapear(lado, otro(lado), d.y);
+    if (y !== null) enviar(otro(lado), { type: 'academia-scroll-to', y });
+  }
+});
+
+$('notas').addEventListener('click', (ev) => { const n = ev.target.closest('.nota'); if (!n) return; if (ev.target.closest('.copiar')) copiar(n.dataset.id); else elegir(n.dataset.id); });
+$('notas').addEventListener('keydown', (ev) => { if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList.contains('nota')) { ev.preventDefault(); elegir(ev.target.dataset.id); } });
+$('notas').addEventListener('wheel', (ev) => { const l = principal(); enviar(l, { type: 'academia-compare', cmd: 'rueda', dy: ev.deltaY / (escala[l] || 1) }); }, { passive: true });
+document.addEventListener('click', (ev) => {
+  const m = ev.target.closest('[data-modo-btn]'); if (m) return fijarModo(m.dataset.modoBtn);
+  const a = ev.target.closest('[data-ancho-btn]'); if (a) return fijarAncho(a.dataset.anchoBtn);
+  const p = ev.target.closest('.punto'); if (p) { elegir(p.dataset.id); abrirHoja(); return; }
+  const ix = ev.target.closest('[data-ir]'); if (ix) { $('ayuda').close(); const [pan, cod] = ix.dataset.ir.split('|'); if (pan === pantalla) elegir(cod); else fijarPantalla(pan, cod); }
+});
+function abrirHoja() { const e = entradas.find((x) => x.codigo === cambio); if (!e) return; $('hoja-cod').textContent = e.codigo; $('hoja-t').textContent = e.titulo; $('hoja-det').textContent = e.detalle; $('hoja').showModal(); }
+$('actual').addEventListener('click', abrirHoja);
+$('hoja-copiar').addEventListener('click', (ev) => copiar(cambio, ev.currentTarget));
+$('prev').addEventListener('click', () => mover(-1));
+$('next').addEventListener('click', () => mover(1));
+$('ayuda-btn').addEventListener('click', () => $('ayuda').showModal());
+$('pantalla-sel').addEventListener('change', (ev) => fijarPantalla(ev.target.value));
+document.addEventListener('keydown', (ev) => {
+  if (ev.target.closest('select,input,textarea,dialog') || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  const k = ev.key.toLowerCase();
+  if (k === '1') fijarModo('antes'); else if (k === '2') fijarModo('despues'); else if (k === '3') fijarModo('lado');
+  else if (k === ' ' && !ev.target.closest('button,a,[role=button]')) { ev.preventDefault(); fijarModo(efectivo() === 'antes' ? 'despues' : 'antes'); }
+  else if (k === 'j' || k === 'arrowdown') { ev.preventDefault(); mover(1); } else if (k === 'k' || k === 'arrowup') { ev.preventDefault(); mover(-1); }
+});
+new ResizeObserver(() => { if ($('escena').dataset.modo !== efectivo()) pintarControles(); ajustar(); }).observe($('escena'));
+
+(async () => {
+  try { const r = await fetch('cambios.json', { cache: 'no-store' }); datos = await r.json(); } catch { datos = { pantallas: [], cambios: {} }; }
+  for (const p of datos.pantallas) {
+    const b = document.createElement('button'); b.type = 'button'; b.dataset.id = p.id; b.textContent = p.nombre; b.addEventListener('click', () => fijarPantalla(p.id)); $('pantallas').append(b);
+    $('pantalla-sel').append(new Option(p.nombre, p.id));
+  }
+  const vistos = new Set();
+  for (const p of datos.pantallas) for (const e of datos.cambios[p.id] || []) {
+    if (vistos.has(e.codigo)) continue; vistos.add(e.codigo);
+    const li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.dataset.ir = p.id + '|' + e.codigo;
+    b.innerHTML = '<em></em><span></span>'; b.firstChild.textContent = e.codigo; b.lastChild.textContent = e.titulo + ' · ' + p.nombre; li.append(b); $('indice').append(li);
+  }
+  if (['antes', 'despues', 'lado'].includes(params.get('modo'))) modo = params.get('modo');
+  if (params.get('ancho') === 'movil') ancho = 'movil';
+  const inicial = datos.pantallas.some((p) => p.id === params.get('view')) ? params.get('view') : datos.pantallas[0]?.id;
+  if (inicial) fijarPantalla(inicial, params.get('cambio'));
+})();
+</script>
+</body>
+</html>

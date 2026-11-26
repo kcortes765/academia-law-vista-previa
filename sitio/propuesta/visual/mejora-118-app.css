@@ -1,5 +1,0 @@
-/* Mejora «acabado» · ajustes que antes cambiaban app.css: avisos con filete del color de acento y errores con el color de error de la paleta.
-   Va justo después de app.css para conservar el mismo orden de cascada. */
-.session-detail [aria-invalid=true]{border-color:var(--p-error,#a33025)}
-.notice,.form-message{border-left:3px solid var(--accent,currentColor)}
-.required-star{color:var(--p-error,#a33025)}

@@ -36,7 +36,7 @@
   document.body.classList.toggle('booking-has-actions',!!bar);
   bookingBarObserver.disconnect();if(bar)bookingBarObserver.observe(bar);
   const closer=main.querySelector('.summary-close');if(closer)closer.textContent='← Cerrar selección';
-  const switcher=main.querySelector('.summary-switch');if(switcher&&audazMobile.matches)switcher.innerHTML=((typeof academiaMejora==='function'&&academiaMejora('reserva'))?('Ver tu selección <span>'):('Ver horarios elegidos <span>'))+selection.length+' '+(selection.length===1?'horario':'horarios')+' ↗</span>';
+  const switcher=main.querySelector('.summary-switch');if(switcher&&audazMobile.matches)switcher.innerHTML=((typeof academiaMejora==='function'&&academiaMejora('reserva-2'))?('Ver tu selección <span>'):('Ver horarios elegidos <span>'))+selection.length+' '+(selection.length===1?'horario':'horarios')+' ↗</span>';
   tick();}
  function focusBookingStage(selector='#booking-stage-title'){
   if(view!=='calendar')return;

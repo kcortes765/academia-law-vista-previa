@@ -388,7 +388,7 @@ body>aside.local-status{display:none!important}
         if (r.height <= 0 && r.width <= 0) continue;
         b.push({ id: e.id, t: Math.round(r.top + scrollY), h: Math.round(r.height), v: n.hasAttribute('data-cmp-marcador') ? 1 : 0 });
       }
-      const msg = { type: 'academia-compare-geo', y: Math.round(scrollY), b };
+      const msg = { type: 'academia-compare-geo', y: Math.round(scrollY), m: Math.round(maxScroll()), b };
       const json = JSON.stringify(msg);
       if (json === geoEnviada) return;
       geoEnviada = json;
@@ -448,6 +448,7 @@ body>aside.local-status{display:none!important}
       enCola = false;
       parent.postMessage({
         type: 'academia-scroll',
+        y: Math.round(scrollY),
         ratio: ratio(),
         ancla: estado && estado.solo ? Object.assign(anclaActual() || { id: '', f: 0 }, { px: scrollY }) : null
       }, PADRE);
@@ -460,9 +461,10 @@ body>aside.local-status{display:none!important}
     if (!d || typeof d !== 'object') return;
 
     if (d.type === 'academia-scroll-to') {
-      const r = Number(d.ratio);
+      const r = Number.isFinite(d.y) ? 0 : Number(d.ratio);
       if (!Number.isFinite(r)) return;
       if (lider()) return; // la persona está moviendo este marco: manda él
+      if (Number.isFinite(d.y)) { desplazar(d.y); return; } // posición exacta calculada por la página padre
       const a = d.ancla;
       // Modo Solo cambios: ambos lados tienen las mismas filas a las mismas alturas → mismo píxel.
       if (estado && estado.solo && aplicado && a && Number.isFinite(a.px)) {

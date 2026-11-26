@@ -16,7 +16,7 @@ editorialAnimate=function(node,{y=0,x=0,duration=240,delay=0,depth=false,trace=f
 editorialHome=function(){
   return audazBaseHome()
     .replace('<span class="hero-line">El conocimiento</span><span class="hero-line">se afina <em>en voz alta.</em></span>','<span class="hero-line">Pensar con rigor.</span><span class="hero-line">Responder</span><span class="hero-line"><em>con claridad.</em></span>')
-    .replace('Un espacio para practicar tus respuestas, ordenar lo que sabes y trabajar lo que todavía necesitas revisar.',((typeof academiaMejora==='function'&&academiaMejora('inicio'))?('Dale voz a lo que sabes. Sesiones online con José Tomás, abogado, para practicar tus respuestas y trabajar lo que todavía necesitas revisar.'):('Dale voz a lo que sabes. Practica tus respuestas y trabaja lo que todavía necesitas revisar.')))
+    .replace('Un espacio para practicar tus respuestas, ordenar lo que sabes y trabajar lo que todavía necesitas revisar.',((typeof academiaMejora==='function'&&academiaMejora('inicio-1'))?('Dale voz a lo que sabes. Sesiones online con José Tomás, abogado, para practicar tus respuestas y trabajar lo que todavía necesitas revisar.'):('Dale voz a lo que sabes. Practica tus respuestas y trabaja lo que todavía necesitas revisar.')))
     .replace('Una sesión.<br><em>Un foco concreto.</em>','De una fecha<br><em>a una práctica.</em>')
     .replace('La preparación toma forma<br>en cada encuentro.','Elige un horario. Define tu foco.<br>Vuelve a lo trabajado.')
     .replace('Sesiones y precios.','Cada sesión,<br><em>su propósito.</em>')
@@ -65,7 +65,7 @@ editorialEnhance=function(current,fresh,before){
     const grid=document.querySelector('.booking-grid'),aside=grid.querySelector(':scope>aside');
     if(!fresh&&before?.repeat&&document.getElementById('repeat-count'))document.getElementById('repeat-count').value=before.repeat;
     grid.classList.toggle('summary-wide',audazSummaryWide&&!audazMobile.matches);
-    grid.insertAdjacentHTML('beforebegin','<div class="summary-controls"><button class="summary-switch" aria-controls="selection-summary" aria-expanded="'+(audazMobile.matches?audazSummaryOpen:audazSummaryWide)+'">'+((typeof academiaMejora==='function'&&academiaMejora('reserva'))?((audazMobile.matches?'Ver tu selección':'Ampliar tu selección')+' <span>'+selection.length+' '+(selection.length===1?'horario':'horarios')+' ↗</span></button></div>'):((audazMobile.matches?'Abrir tu selección':'Dar espacio al resumen')+' <span>'+selection.length+' fechas ↗</span></button></div>')));
+    grid.insertAdjacentHTML('beforebegin','<div class="summary-controls"><button class="summary-switch" aria-controls="selection-summary" aria-expanded="'+(audazMobile.matches?audazSummaryOpen:audazSummaryWide)+'">'+((typeof academiaMejora==='function'&&academiaMejora('reserva-2'))?((audazMobile.matches?'Ver tu selección':'Ampliar tu selección')+' <span>'+selection.length+' '+(selection.length===1?'horario':'horarios')+' ↗</span></button></div>'):((audazMobile.matches?'Abrir tu selección':'Dar espacio al resumen')+' <span>'+selection.length+' fechas ↗</span></button></div>')));
     aside.id='selection-summary';aside.insertAdjacentHTML('afterbegin','<button class="summary-close">← Volver a los horarios</button>');
     grid.insertAdjacentHTML('beforeend','<button class="summary-backdrop" tabindex="-1" aria-label="Cerrar selección"></button>');
     document.querySelector('.summary-switch').addEventListener('click',audazToggleSummary);
@@ -92,7 +92,7 @@ function audazToggleSummary(){
   const grid=document.querySelector('.booking-grid');
   if(audazMobile.matches){audazSummaryOpen=true;audazApplySummary();document.querySelector('.summary-close').focus({preventScroll:true});return;}
   const before=grid.querySelector('aside').getBoundingClientRect(),beforeCols=getComputedStyle(grid).gridTemplateColumns;audazSummaryWide=!audazSummaryWide;grid.classList.toggle('summary-wide',audazSummaryWide);const after=grid.querySelector('aside').getBoundingClientRect(),afterCols=getComputedStyle(grid).gridTemplateColumns;
-  document.querySelector('.summary-switch').setAttribute('aria-expanded',String(audazSummaryWide));document.querySelector('.summary-switch').firstChild.textContent=((typeof academiaMejora==='function'&&academiaMejora('reserva'))?(audazSummaryWide?'Reducir tu selección ':'Ampliar tu selección '):(audazSummaryWide?'Volver al equilibrio ':'Dar espacio al resumen '));
+  document.querySelector('.summary-switch').setAttribute('aria-expanded',String(audazSummaryWide));document.querySelector('.summary-switch').firstChild.textContent=((typeof academiaMejora==='function'&&academiaMejora('reserva-2'))?(audazSummaryWide?'Reducir tu selección ':'Ampliar tu selección '):(audazSummaryWide?'Volver al equilibrio ':'Dar espacio al resumen '));
   audazMove(grid,[{gridTemplateColumns:beforeCols},{gridTemplateColumns:afterCols}],{duration:500,task:true,tag:'composition-layout'});
   audazMove(grid.querySelector('aside .summary-heading'),[{transform:'translateX(24px)'},{transform:'none'}],{duration:420,task:true,tag:'composition-title'});
 }
@@ -118,7 +118,7 @@ document.addEventListener('keydown',e=>{
     if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
   }
 });
-audazMobile.addEventListener('change',()=>{if(audazSummaryOpen)audazCloseSummary(false);audazRelease();document.querySelector('.site-header nav')?.classList.remove('open');document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');audazNavOpen=false;const trigger=document.querySelector('.summary-switch');if(trigger){trigger.firstChild.textContent=((typeof academiaMejora==='function'&&academiaMejora('reserva'))?(audazMobile.matches?'Ver tu selección ':'Ampliar tu selección '):(audazMobile.matches?'Abrir tu selección ':'Dar espacio al resumen '));trigger.setAttribute('aria-expanded',String(!audazMobile.matches&&audazSummaryWide));}});
+audazMobile.addEventListener('change',()=>{if(audazSummaryOpen)audazCloseSummary(false);audazRelease();document.querySelector('.site-header nav')?.classList.remove('open');document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');audazNavOpen=false;const trigger=document.querySelector('.summary-switch');if(trigger){trigger.firstChild.textContent=((typeof academiaMejora==='function'&&academiaMejora('reserva-2'))?(audazMobile.matches?'Ver tu selección ':'Ampliar tu selección '):(audazMobile.matches?'Abrir tu selección ':'Dar espacio al resumen '));trigger.setAttribute('aria-expanded',String(!audazMobile.matches&&audazSummaryWide));}});
 document.addEventListener('DOMContentLoaded',()=>{
   const baseOpen=openDialog;
   openDialog=function(html){

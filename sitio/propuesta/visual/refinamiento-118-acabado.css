@@ -1,4 +1,0 @@
-/* Folio 118 · mejora «acabado»: avisos y errores. */
-/* Avisos: arena suave con filete cobre; errores con filete y tinte de --p-error. Texto explícito para cualquier superficie. */
-.variant-c .notice{background:color-mix(in srgb,var(--law-light) 35%,var(--paper));border-left:3px solid var(--accent);color:var(--text)}
-.variant-c :is(#page-message,.notice[role=alert]){background:color-mix(in srgb,var(--p-error) 8%,var(--paper));border-left-color:var(--p-error)}
